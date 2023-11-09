@@ -37,7 +37,7 @@
 
             <!-- admin btn's -->
             <div class="new_post_btn">
-                <a href="#"><span class="material-icons-round">post_add</span>Create New Post</a>
+                <a href="{{ url_for('auth.create_post') }}"><span class="material-icons-round">post_add</span>Create New Post</a>
                 <a href="{{url_for('auth.create_subject')}}"><span class="material-icons-round">subject</span>Create Subject</a>
             </div>
             <!-- end btn's -->
@@ -47,12 +47,13 @@
             <!-- Pre Posts -->
             <div class="pre_posts">
                 <h1>Published Posts</h1>
-
+                {% if posts %}
+                {% for post in posts %}
                 <div class="pre_tab">
                     <div class="title">
                         <a href="#">
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing.</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet error distinctio quos!</p>
+                            <h3>{{post.title}}</h3>
+                            <p>{{post.subtitle}}</p>
                         </a>
                     </div>
                     <hr class="line">
@@ -70,7 +71,8 @@
                         </a>
                     </div>
                 </div>
-                
+                {% endfor %}
+                {% endif %}
     
             </div> 
             <!-- end pre posts -->   

@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ g.csrf_token }}">
+
     <title>NexLog</title>
     <!-- <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/logo/favicon.ico')}}"> -->
 
+    
+    <!-- Google icon-->    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+    <!-- Custome CSS Styles-->
     <link rel="stylesheet" href="{{url_for('static', filename='css/root.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
@@ -15,6 +20,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/admin.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/blog.css')}}">
+    {{ ckeditor.load() }}
 </head>
 <body>
 

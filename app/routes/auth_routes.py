@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request, flash, jsonify
+from flask import render_template, redirect, url_for, request, flash, jsonify, g
 from flask import Blueprint
 from flask_login import login_user, logout_user, login_required, current_user, login_manager
 
@@ -9,9 +9,18 @@ from app.forms.post_forms import PostForm, SubjectForm
 from app.routes.blog_routes import blog_routes
 from . import auth_routes
 
+from flask_ckeditor import upload_success, upload_fail
+from flask_wtf.csrf import generate_csrf
+from datetime import datetime
+
 auth_routes = Blueprint('auth', __name__)
 
 
+# -------- Globally to all render_templates ---------------------------------------
+@auth_routes.before_request
+def before_request():
+    """universally accessible without repeatedly passing them manually to every render_template call."""
+    g.csrf_token = generate_csrf()  # from flask import g
 
 ### Login >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
@@ -69,9 +78,10 @@ def logout():
 @auth_routes.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
+    posts = Post.query.all()
     # if current_user.subdomain != user_subdomain:
     #     return redirect(url_for('main.index'))
-    return render_template('auth/admin_dashboard.html', current_user=current_user)
+    return render_template('auth/admin_dashboard.html', current_user=current_user, posts=posts)
 
 
 ### Create_subject >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -124,3 +134,31 @@ def delete_subject(subject_id):
         return jsonify({'status': 'success'})
     else:
         return jsonify({'status': 'error', 'message': 'Post not found'}), 404
+
+
+
+
+
+
+
+### Create_Post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# -----------------------------------------------------------------
+@auth_routes.route('/create_post', methods=['GET', 'POST'])
+@login_required
+def create_post():
+    form = PostForm()
+    posts = Post.query.all()
+    blog_id = current_user.id
+    if form.validate_on_submit():
+        print('form is valid')
+        new_post = Post(
+            blog_id=blog_id,
+            title= form.title.data,
+            subtitle = form.subtitle.data,
+            body = form.body.data
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        print(f'New post added: {form.title.data}')
+        return redirect(url_for('auth.admin_dashboard'))
+    return render_template('auth/create_post.html', current_user=current_user, form=form, posts=posts)

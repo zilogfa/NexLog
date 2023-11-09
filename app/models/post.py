@@ -1,8 +1,10 @@
 from app import db
+from app.models.blog import Blog
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
 class Post(db.Model):
+    __tablename__ = 'post'
     id = db.Column(db.Integer, primary_key=True)
     blog_id = db.Column(db.Integer, db.ForeignKey('blog.id'), nullable=False)
 
