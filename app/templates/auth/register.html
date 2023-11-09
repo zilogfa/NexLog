@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexLog</title>
+    <!-- <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/logo/favicon.ico')}}"> -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/root.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <style>
+
+        form {
+            margin: 4rem;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(255, 255, 255);
+            color: rgb(138, 138, 138);
+            border-radius: 10px;
+            gap: 1rem;
+            width: 28rem;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        form > *{
+            display: flex; 
+            flex-direction: column;
+        }
+
+        .form-control {
+            background-color: whitesmoke;
+            height: 2.5rem;
+            width: 20rem;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>{{title}} Page</h1>
+
+    <div>
+        <form method="POST" action="{{ url_for('auth.register') }}">
+            {{ form.hidden_tag() }}
+            <div>
+                <label for="">Email:</label>
+                {{ form.email(class="form-control") }}
+            </div>
+            <div>
+                <label for="">blogname.nexlog.co:</label>
+                {{ form.subdomain(class="form-control") }}
+            </div>
+            <div>
+                <label for="">Blog Title:</label>
+                {{ form.blog_title(class="form-control") }}
+            </div>
+            <div>
+                <label for="">Blog subtitle:</label>
+                {{ form.blog_subtitle(class="form-control") }}
+            </div>
+            <div>
+                <label for="">Author:</label>
+                {{ form.author(class="form-control") }}
+            </div>
+            <div>
+                <label for="">Password:</label>
+                {{ form.password(class="form-control") }}
+            </div>
+            <div>
+                <label for="">Confirm Password:</label>
+                {{ form.confirm_password(class="form-control") }}
+            </div>
+            
+            {{ form.submit }}
+        </form>
+    </div>
+    
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+</body>
+</html>

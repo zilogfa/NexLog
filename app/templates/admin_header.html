@@ -1,0 +1,17 @@
+<header class="admin_header">
+    <div class="nexlog">
+        <a href="{{ url_for('auth.logout') }}" target="_blank">
+            <span class="material-icons-round">logout</span>
+            <h3>logout</h3>
+        </a>
+    </div>
+    <div class="visitBlog">
+        <a href="{{url_for('blog.blog', user_subdomain=current_user.subdomain)}}" target="_blank">
+            <span class="material-icons-round">arrow_outward</span>
+            <h3>Visit your blog</h3>
+        </a>
+    </div>
+</header>
+
+
+

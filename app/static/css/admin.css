@@ -1,0 +1,390 @@
+.admin_header{
+    display: flex;
+    position: fixed;
+    top: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-dark);
+    
+}
+
+.admin_header div{
+    margin: 0 3rem;
+}
+
+.admin_header div a{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--color-white);
+    transition: all 0.2s ease;
+}
+
+.admin_header div a h3{
+    font-size: 1.2rem;
+}
+
+.admin_header .nexlog a:hover{
+    margin-left: 0.3rem;
+    opacity: 0.8;
+}
+
+.admin_header .visitblog a:hover{
+    margin-right: 0.3rem;
+    opacity: 0.8;
+}
+
+.admin_header a:active{
+    transform: scale(0.9);
+}
+
+
+
+
+
+
+
+
+
+
+.admin_main{
+    width: 100vw;
+    min-height: 100%;
+    color: var(--color-white);
+    background-color: var(--color-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin_main hr{
+    border: solid 1px var(--color-light)
+}
+
+.admin_sec{
+    margin-top: 6rem;
+    width: 80rem;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+
+.admin_sec .dashboard_title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-white);
+}
+
+.admin_sec .admin_panel{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 30rem;
+    padding: var(--card-padding);
+    color: var(--color-dark);
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow-dark);
+    border-radius: var(--border-radius-1);
+    transition: var(--transition-1);
+}
+
+
+.admin_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.admin_info .admin_img img{
+    width: 12rem;
+    height: auto;
+    object-fit: cover;
+    border-radius: 100px;
+}
+
+.admin_info .admin_bio{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.admin_info .admin_bio h3{
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.admin_info .admin_bio a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem 0;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: var(--border-radius-1);
+    color: var(--color-white);
+    background-color: var(--color-dark);
+    transition: var(--transition-1);
+}
+
+.admin_info .admin_bio a:hover{
+    background-color: var(--color-dark-variant);
+}
+
+.admin_info .admin_bio a:active{
+    transform: scale(0.9);
+}
+
+
+
+
+
+
+
+
+
+.admin_panel .new_post_btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.new_post_btn a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem 0;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 12rem;
+    height: 3rem;
+    border-radius: var(--border-radius-1);
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    transition: var(--transition-1);
+}
+
+.new_post_btn a:hover{
+    background-color: var(--color-dark-variant);
+}
+
+.new_post_btn a:active{
+    transform: scale(0.9);
+}
+
+
+
+
+
+.pre_posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin: 4rem 0;
+}
+
+.pre_posts .pre_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90%;
+    padding: 1rem;
+    background-color: var(--color-background);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition-1);
+    border-radius: var(--border-radius-1);
+    border: 1px solid var(--color-light);
+}
+
+.pre_posts .pre_tab:hover{
+    box-shadow: none;
+}
+
+.pre_posts .pre_tab .title{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    transition: var(--transition-1);
+}
+
+.pre_tab .title a:hover{
+    opacity: 0.7;
+    color: var(--color-primary);
+}
+
+.pre_posts .pre_tab .title h3{
+    font-weight: bold;
+}
+
+.pre_posts .pre_tab .line{
+    border: solid 1px var(--color-light)
+}
+
+.pre_posts .pre_tab .btn_sec{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+
+.pre_posts .pre_tab .btn_sec h3{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--color-dark-variant);
+}
+
+.pre_posts .pre_tab .btn_sec a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--color-dark-variant);
+    gap: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.pre_posts .pre_tab .btn_sec a:hover{
+    opacity: 0.8;
+}
+
+.pre_posts .pre_tab .btn_sec span{
+    font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SUBJECT PAGE--------------- */
+.admin_sec .new_subject form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 3rem 0;
+    margin-left: 1rem;
+}
+
+.pre_subject{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.pre_subject .subject_tab{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1rem;
+    width: 100%;
+    background-color: var(--color-background);
+}
+
+
+.pre_subject .subject_tab h3{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.pre_subject .subject_tab p{
+    font-size: 0.8rem;
+}
+
+
+
+
+.sub_btn{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.subject_tab .sub_btn h3{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--color-dark-variant);
+}
+
+.subject_tab .sub_btn a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--color-dark-variant);
+    gap: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.subject_tab .sub_btn a:hover{
+    opacity: 0.8;
+}
+
+.subject_tab .sub_btn span{
+    font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 1280px){
+
+    .admin_header div{
+        margin: 0;
+        padding: 1rem;
+    }
+
+    .admin_header div a h3{
+        font-size: 0.8rem;
+    }
+    
+
+    .admin_sec{
+        margin-top: 6rem;
+        max-width: 96%;
+    }
+
+    .pre_posts .pre_tab .btn_sec{
+        flex-direction: column;
+        gap: 1rem;
+        align-items:flex-start;
+    }
+
+}

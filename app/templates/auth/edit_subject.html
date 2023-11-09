@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% include 'admin_header.html' %}
+{% block content %}
+
+
+<div class="admin_main">
+    
+    <div class="admin_sec">
+        <a class="dashboard_title" href="{{ url_for('auth.create_subject') }}">
+            <span class="material-icons-round">arrow_back</span>
+            <h1>back</h1>
+        </a>
+        <div class="admin_panel">
+            <h1>Create Subject</h1>
+            <div class="pre_subject">
+                {% if subject %}
+                    <div class="subject_tab">
+                        <h3>{{subject.name}}</h3>
+                        <p>{{subject.description}}</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="new_subject">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ form.name(class="form_string")}}
+                    {{ form.description(class="form_text")}}
+                    {{ form.submit(class="form_btn")}}   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

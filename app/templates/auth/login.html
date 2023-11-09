@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+{% block content %}
+
+<div class="login">
+    <h1>{{title}} Page</h1>
+    <div class="login-table">
+        <div class="table-head">
+            <h3>Share you idea</h3>
+        </div>
+        <div>
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                {{ form.hidden_tag() }}
+                <div>
+                    <label for="">Email:</label>
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div>
+                    <label for="">Password:</label>
+                    {{ form.password(class="form-control") }}
+                </div>
+                <div class="form-remember">
+                    <label for="">Remeber me:</label>
+                    {{ form.remember(class="") }}
+                </div>            
+                <button type="submit" class="">Login</button>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

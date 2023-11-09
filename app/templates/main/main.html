@@ -1,0 +1,128 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main">
+
+    <div class="main-table">
+        <div class="main-top">
+            <div class="logo-sec">
+                <h3>NEXLOG</h3>
+            </div>
+            <div class="login-div">
+                <a href="{{ url_for('auth.login') }}"><span class="material-icons-round">login</span>Login</a>
+            </div>
+        </div>
+
+        <div class="main-info">
+            <div>
+
+            </div>
+            <div class="img-sec">
+                
+                <img src="{{url_for('static', filename='images/main/blog-img.png')}}">
+                <h3><span>YourName</span>.nexlog</h3>
+            </div>
+            <div class="register-div">
+                <h3>Your favorite place to blog and share ideas.</h3>
+                <div class="features">
+                    <div>
+                        <img src="{{url_for('static', filename='images/main/main-icon-free.png')}}">
+                        <h3>Free & Protected</h3>
+                    </div>
+                    <div>
+                        <img src="{{url_for('static', filename='images/main/main-icon-editor.png')}}">
+                        <h3>Professional Text Editor</h3>
+                    </div>
+                    <!-- <div>
+                        <img src="{{url_for('static', filename='images/main/main-icon-editor.png')}}">
+                        <h3>Easy Post Categorization</h3>
+                    </div> -->
+                    <div>
+                        <img src="{{url_for('static', filename='images/main/main-icon-editor.png')}}">
+                        <h3>Connect with Audience</h3>
+                    </div>
+                    <div>
+                        <img src="{{url_for('static', filename='images/main/main-icon-free.png')}}">
+                        <h3>Insightful Analytics</h3>
+                    </div>
+                </div>
+                <a href="{{ url_for('auth.register') }}"><span class="material-icons-round">app_registration</span>CREAT YOUR BLOG</a>
+
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- <div class="main">
+<div class="main-sec">
+    <div class="main-header">
+        <p>Welcome to</p>
+        <h1>{{title}}</h1>
+        <p>Your favorite place to blog and share ideas.</p>
+    </div>
+
+    <div class="sides">
+        <div class="register">
+            <div>
+                <h3> <span>YourName</span> .nexlog.com</h3>
+                <div class="main-btn">
+                    <p>It’s quick and easy.</p>
+                    <a class="register-color" href="{{ url_for('auth.register') }}"><span class="material-icons-round">app_registration</span>Register</a>
+                </div>
+                <div class="main-btn">
+                    <a class="login-color" href="{{ url_for('auth.login') }}"><span class="material-icons-round">input</span>Login</a>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <h1>Features:</h1>
+            <div class="info-tab">
+                <div class="info-icon"><span class="material-icons-round">history_edu</span></div>
+                <div class="info-txt"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat maxime iure nemo ad eligendi, tempora dolorum quo provident necessitatibus, sunt voluptatibus, blanditiis dolorem similique dolore voluptas sapiente architecto mollitia pariatur?</p></div>
+            </div>
+
+            <div class="info-tab">
+                <div class="info-icon"><span class="material-icons-round">feed</span></div>
+                <div class="info-txt"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat maxime iure nemo ad eligendi, tempora dolorum quo provident necessitatibus, sunt voluptatibus, blanditiis dolorem similique dolore voluptas sapiente architecto mollitia pariatur?</p></div>
+            </div>
+
+            <div class="info-tab">
+                <div class="info-icon"><span class="material-icons-round">newspaper</span></div>
+                <div class="info-txt"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat maxime iure nemo ad eligendi, tempora dolorum quo provident necessitatibus, sunt voluptatibus, blanditiis dolorem similique dolore voluptas sapiente architecto mollitia pariatur?</p></div>
+            </div>
+
+            <div class="info-tab">
+                <div class="info-icon"><span class="material-icons-round">receipt_long</span></div>
+                <div class="info-txt"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat maxime iure nemo ad eligendi, tempora dolorum quo provident necessitatibus, sunt voluptatibus, blanditiis dolorem similique dolore voluptas sapiente architecto mollitia pariatur?</p></div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div> -->
+
+
+    
+
+{% endblock %}
+
+    
+
+
+
+
+<!-- <img src="{{url_for('static', filename='images/main/nexlog-main.png')}}"> -->
+
+
+
+
+<!-- <h1>{{title}}</h1>
+
+    <a href="{{ url_for('auth.register') }}">Register</a> <br>
+    <a href="{{ url_for('auth.login') }}">Login</a> -->

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% include 'admin_header.html' %}
+{% block content %}
+
+
+<div class="admin_main">
+    
+    <div class="admin_sec">
+        <a class="dashboard_title" href="#">
+            <span class="material-icons-round">dashboard_customize</span>
+            <h1>Admin Dashboard</h1>
+        </a>
+        <div class="admin_panel">
+            <!-- admin info -->
+            <div class="admin_info">
+                <div class="admin_img">
+                    <img src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}" alt="">
+                    
+                </div>
+                <div class="admin_bio">
+                    <h3>Hello, {{current_user.author}}</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, sequi dolor nam similique ullam ea! Enim vero accusamus cumque ipsa?</p>
+                    <a href="#"><span class="material-icons-round">tune</span>Setting</a>
+                </div>
+            </div>
+            <!-- END admin info --> 
+
+
+
+            <!-- Analysis -->
+            <div class="analysis">
+
+            </div>
+            <!-- END analysis -->
+            
+
+
+            <!-- admin btn's -->
+            <div class="new_post_btn">
+                <a href="#"><span class="material-icons-round">post_add</span>Create New Post</a>
+                <a href="{{url_for('auth.create_subject')}}"><span class="material-icons-round">subject</span>Create Subject</a>
+            </div>
+            <!-- end btn's -->
+    
+
+
+            <!-- Pre Posts -->
+            <div class="pre_posts">
+                <h1>Published Posts</h1>
+
+                <div class="pre_tab">
+                    <div class="title">
+                        <a href="#">
+                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing.</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet error distinctio quos!</p>
+                        </a>
+                    </div>
+                    <hr class="line">
+                    <div class="btn_sec">
+                        <h3><span class="material-icons-round">schedule</span>21:37 • 11/09/2023</h3>
+                        <h3><span class="material-icons-round">visibility</span>33</h3>
+                        <h3><span class="material-icons-round">mode_comment</span>77</h3>
+                        <a href="#">
+                            <span class="material-icons-round">edit_note</span>
+                            <h3>Edit</h3>
+                        </a>
+                        <a href="#">
+                            <span class="material-icons-round">disabled_by_default</span>
+                            <h3>Delete</h3>
+                        </a>
+                    </div>
+                </div>
+                
+    
+            </div> 
+            <!-- end pre posts -->   
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
