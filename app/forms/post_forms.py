@@ -1,11 +1,24 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FileField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FileField, BooleanField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
+from flask_wtf.file import FileField, FileAllowed
+from wtforms_sqlalchemy.fields import QuerySelectMultipleField, QuerySelectField #pip install WTForms-SQLAlchemy
 from flask_ckeditor import CKEditorField
+from app.models import Subject
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()], render_kw={"placeholder": "Title"})
     subtitle = StringField('Subtitle', render_kw={"placeholder": "Subtitle"})
+    post_pic = FileField('Post Picture', validators=[
+        FileAllowed(['jpg', 'jpeg', 'png', 'webp', 'gif'])], render_kw={'class': ''})
+    subject = QuerySelectField(
+        'Subject',
+        query_factory=lambda: Subject.query,
+        get_label='name',
+        allow_blank=True,
+        blank_text='-- no subject --',
+        render_kw={"class": "form_query_select"}
+    )
     body = CKEditorField('Body', validators=[DataRequired()])
     submit = SubmitField('Post')
 

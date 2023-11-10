@@ -7,3 +7,4 @@ class Config:
     SERVER_NAME = 'localhost:5000'
     SESSION_COOKIE_DOMAIN = '.localhost'
     REMEMBER_COOKIE_DOMAIN = '.localhost'
+    

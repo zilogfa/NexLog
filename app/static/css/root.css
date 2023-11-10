@@ -177,3 +177,13 @@ strong{
     color: var(--color-dark);
     border-radius: var(--border-radius-1);
 }
+
+.form_query_select{
+    border: 1px solid var(--color-light);
+    min-height: 2.5rem;
+    width: 18rem;
+    padding: 0.2rem;
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    border-radius: var(--border-radius-1);
+}

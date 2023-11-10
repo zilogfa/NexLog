@@ -12,12 +12,24 @@
             <h1>back</h1>
         </a>
         <div class="admin_panel">
-            <h1>Create Subject</h1>
+            <h1>Create Post</h1>
             <div class="new_subject">
-                <form method="POST" action="{{ url_for('auth.create_post') }}">
+                <form method="POST" action="{{ url_for('auth.create_post') }}" enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
                     {{ form.title(class="form_string") }}
                     {{ form.subtitle(class="form_string") }}
+                    {{ form.subject() }}
+                    <div class="custom-input"> 
+                        {{ form.post_pic(id="registerFile", class="custom-image-input") }} 
+                        <label for="registerFile" class="custom-image-label"><span class="material-icons-round">portrait</span>Upload profile picture...</label>
+                            {% if form.post_pic.errors %}
+                            <ul class="errors">
+                                {% for error in form.post_pic.errors %}
+                                    <li style="color: var(--color-danger);">{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div> 
                     <!-- Render the CKEditor field -->
                     {{ form.body(class="ckeditor") }}
                     {{ form.submit(class="form_btn") }}   

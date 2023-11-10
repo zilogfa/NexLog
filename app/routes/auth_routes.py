@@ -13,7 +13,38 @@ from flask_ckeditor import upload_success, upload_fail
 from flask_wtf.csrf import generate_csrf
 from datetime import datetime
 
+import os
+import secrets
+from PIL import Image  # pip Pillow
+from flask import current_app
+
 auth_routes = Blueprint('auth', __name__)
+
+
+### Login >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+def save_post_picture(file):
+    if not file:
+        return None
+    # Generating a secure random string as the filename
+    random_hex = secrets.token_hex(8)
+    # Getting the file extension
+    _, file_extension = os.path.splitext(file.filename)
+    # Creating a new filename using the random string and the original extension
+    new_filename = random_hex + file_extension
+    # Setting the destination folder to save the post pictures
+    destination = os.path.join(
+        current_app.root_path, 'static/images/post_pictures', new_filename)
+
+    # Resize the image to a desired size (optional)
+    output_size = (1200, 1200)  # Adjust the size as needed
+    image = Image.open(file)
+    image.thumbnail(output_size)
+
+    # Saving the resized image to the destination folder
+    image.save(destination)
+
+    # Returning the filename to store in the database
+    return new_filename
 
 
 # -------- Globally to all render_templates ---------------------------------------
@@ -155,10 +186,27 @@ def create_post():
             blog_id=blog_id,
             title= form.title.data,
             subtitle = form.subtitle.data,
+            post_pic = save_post_picture(form.post_pic.data) if form.post_pic.data else None,
             body = form.body.data
         )
+        if form.subject.data:
+            new_post.subjects.append(form.subject.data)
         db.session.add(new_post)
         db.session.commit()
         print(f'New post added: {form.title.data}')
         return redirect(url_for('auth.admin_dashboard'))
     return render_template('auth/create_post.html', current_user=current_user, form=form, posts=posts)
+
+### DELETE_post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# -----------------------------------------------------------------
+@auth_routes.route('/delete_post/<int:post_id>', methods=['POST', 'GET'])
+@login_required
+def post_subject(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    if post:
+        print('form is valid')
+        db.session.delete(post)
+        db.session.commit()
+        return jsonify({'status': 'success'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Post not found'}), 404
