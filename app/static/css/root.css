@@ -138,8 +138,26 @@ strong{
 }
 
 
+.line-100{
+    margin: 0.8rem 0;
+    border: 1px solid var(--color-light);
+}
+
+.flex-row-span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+}
 
 
+.a-span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
 
 .form_btn{
     background-color: var(--color-dark) ;

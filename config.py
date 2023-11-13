@@ -4,7 +4,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     WTF_CSRF_ENABLED = True
     UPLOAD_FOLDER = 'static'
-    SERVER_NAME = 'localhost:5000'
+    SERVER_NAME = 'localhost:8181'
     SESSION_COOKIE_DOMAIN = '.localhost'
     REMEMBER_COOKIE_DOMAIN = '.localhost'
-    

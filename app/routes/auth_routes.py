@@ -21,7 +21,7 @@ from flask import current_app
 auth_routes = Blueprint('auth', __name__)
 
 
-### Login >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Login >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def save_post_picture(file):
     if not file:
         return None
@@ -53,8 +53,10 @@ def before_request():
     """universally accessible without repeatedly passing them manually to every render_template call."""
     g.csrf_token = generate_csrf()  # from flask import g
 
-### Login >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Login >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
+
+
 @auth_routes.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -70,17 +72,18 @@ def login():
     return render_template('auth/login.html', title='Login', form=form, logged_in=current_user.is_authenticated)
 
 
-### Register >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Register >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
 @auth_routes.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         print("\n**Registeration for is Validate\n")
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
         blog = Blog(
-            email=(form.email.data).lower(), 
-            password = hashed_password,
+            email=(form.email.data).lower(),
+            password=hashed_password,
             subdomain=(form.subdomain.data).lower(),
             blog_title=form.blog_title.data,
             blog_subtitle=form.blog_subtitle.data,
@@ -94,8 +97,10 @@ def register():
     print("\n** Register Page")
     return render_template('auth/register.html', title='Register', form=form)
 
-### LogOut >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# LogOut >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
+
+
 @auth_routes.route('/logout')
 @login_required
 def logout():
@@ -103,8 +108,7 @@ def logout():
     return redirect(url_for('main.main'))
 
 
-
-### Admin Dashboard >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Admin Dashboard >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
 @auth_routes.route('/admin_dashboard')
 @login_required
@@ -115,7 +119,7 @@ def admin_dashboard():
     return render_template('auth/admin_dashboard.html', current_user=current_user, posts=posts)
 
 
-### Create_subject >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Create_subject >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
 @auth_routes.route('/create_subject', methods=['GET', 'POST'])
 @login_required
@@ -125,8 +129,8 @@ def create_subject():
     if form.validate_on_submit():
         print('form is valid')
         new_subject = Subject(
-            name = form.name.data,
-            description = form.description.data
+            name=form.name.data,
+            description=form.description.data
         )
         db.session.add(new_subject)
         db.session.commit()
@@ -134,8 +138,10 @@ def create_subject():
         return redirect(url_for('auth.create_subject'))
     return render_template('auth/create_subject.html', current_user=current_user, form=form, subjects=subjects)
 
-### Edit_subject >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Edit_subject >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
+
+
 @auth_routes.route('/edit_subject/<int:subject_id>', methods=['GET', 'POST'])
 @login_required
 def edit_subject(subject_id):
@@ -152,8 +158,10 @@ def edit_subject(subject_id):
         return redirect(url_for('auth.create_subject', subject_id=subject.id))
     return render_template('auth/edit_subject.html', current_user=current_user, form=form, subject=subject)
 
-### DELETE_subject >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# DELETE_subject >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
+
+
 @auth_routes.route('/delete_subject/<int:subject_id>', methods=['GET', 'POST'])
 @login_required
 def delete_subject(subject_id):
@@ -167,12 +175,7 @@ def delete_subject(subject_id):
         return jsonify({'status': 'error', 'message': 'Post not found'}), 404
 
 
-
-
-
-
-
-### Create_Post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Create_Post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
 @auth_routes.route('/create_post', methods=['GET', 'POST'])
 @login_required
@@ -184,10 +187,11 @@ def create_post():
         print('form is valid')
         new_post = Post(
             blog_id=blog_id,
-            title= form.title.data,
-            subtitle = form.subtitle.data,
-            post_pic = save_post_picture(form.post_pic.data) if form.post_pic.data else None,
-            body = form.body.data
+            title=form.title.data,
+            subtitle=form.subtitle.data,
+            post_pic=save_post_picture(
+                form.post_pic.data) if form.post_pic.data else None,
+            body=form.body.data
         )
         if form.subject.data:
             new_post.subjects.append(form.subject.data)
@@ -197,8 +201,10 @@ def create_post():
         return redirect(url_for('auth.admin_dashboard'))
     return render_template('auth/create_post.html', current_user=current_user, form=form, posts=posts)
 
-### DELETE_post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# DELETE_post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
+
+
 @auth_routes.route('/delete_post/<int:post_id>', methods=['POST', 'GET'])
 @login_required
 def post_subject(post_id):

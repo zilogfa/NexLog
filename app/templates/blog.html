@@ -1,12 +1,101 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>blog</h1>
-<h1>{{subdomain}}</h1>
+<div class="blog-header">
+    <img src="https://www.southdowns.gov.uk/wp-content/uploads/2020/07/close-up-photography-of-leaves-with-droplets-807598.jpg" alt="">
+    <div class="blog-title">
+        <h1>Lorem ipsum dolor sit amet.</h1>
+        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit reprehenderit obcaecati aliquid.</h3>
+    </div>
+</div>
+
+<div class="blog-container">
+    <aside>
+        <div class="flex-row-span">
+            <span class="material-icons-round">co_present</span> <h3>About</h3>
+        </div>
+        <hr class="line-100">
+
+        <div class="author-img">
+            {% if blog.profile_pic %}
+            <img src="{{url_for('static', filename='images/profile/{{blog.profile_pic}}')}}">
+            {% else %}
+            <img src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}">
+            {% endif %}
+        </div>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quo suscipit velit architecto exercitationem!</p>
+    </aside>
+
+    <section>
+        <div class="blog-post-sec">
+            <div class="post-img">
+                <img src="https://cdn.pixabay.com/photo/2016/02/01/00/56/news-1172463_640.jpg" alt="">
+            </div>
+            <div class="post-title">
+                <div class="upper">
+                    <a class="post-subject" href="#">#subject</a>
+                    <div>
+                        <h1>Title Lorem, ipsum dolor.</h1>
+                        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+                    </div>
+                    
+                    <a class="read-more" href="#">Read more...</a>
+                   
+                </div>
+                <div class="lower">
+                    <hr class="line-100">
+                    <div class="post-info">
+                        <div class="a-span">
+                            <span class="material-icons-round">newspaper</span>
+                            <p>Author: Ali JB</p>
+                        </div>
+                        <div class="a-span">
+                            <span class="material-icons-round">calendar_today</span>
+                            <p>11:10 . Nov 12, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="blog-post-sec">
+            <div class="post-img">
+                <img src="" alt="">
+            </div>
+            <div class="post-title">
+                <div class="upper">
+                    <div>
+                        <h1>Title Lorem, ipsum dolor.</h1>
+                        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+                    </div>
+                    <a href="#">Read more...</a>
+                    <p>#subject</p>
+                </div>
+                <div class="lower">
+                    <hr class="line-100">
+                    <div class="post-info">
+                        <div class="a-span">
+                            <span class="material-icons-round">newspaper</span>
+                            <p>Author: Ali JB</p>
+                        </div>
+                        <div class="a-span">
+                            <span class="material-icons-round">calendar_today</span>
+                            <p>11:10 . Nov 12, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
 
 
 
-{% if posts %}
+<!-- {% if posts %}
 {% for post in posts%}
 
 <div>
@@ -21,7 +110,7 @@
 </div>
 <br><br><br>
 {% endfor%}
-{% endif %}
+{% endif %} -->
 
 
 
