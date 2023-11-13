@@ -139,8 +139,12 @@ strong{
 
 
 .line-100{
-    margin: 0.8rem 0;
     border: 1px solid var(--color-light);
+}
+
+.line-post{
+    border: 1px solid var(--color-light);
+    margin: 0.5rem 0;
 }
 
 .flex-row-span{
@@ -149,6 +153,8 @@ strong{
     align-items: center;
     gap: 0.8rem;
 }
+
+
 
 
 .a-span{
@@ -204,4 +210,10 @@ strong{
     background-color: var(--color-white);
     color: var(--color-dark);
     border-radius: var(--border-radius-1);
+}
+
+
+
+.margin-top-2rem{
+    margin-top: 2rem;
 }

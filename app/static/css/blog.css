@@ -72,7 +72,6 @@
     min-height: 100vh;
     justify-content: center;
     gap: 1.8rem;
-    margin-top: 2rem;
     padding: 2rem;
 }
 
@@ -113,6 +112,67 @@
 
 
 
+.aside-subject{
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    width: 100%;
+    color: var(--color-white);
+    background-color: var(--color-dark);
+    transition: var(--transition-1);
+    border-radius: var(--border-radius-1);
+}
+
+.aside-subject:hover{
+    padding-left: 1rem;
+    opacity: 0.6;
+
+}
+
+.flex-row-span h3{
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+.a-pop-post{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 0.8rem;
+    transition: var(--transition-1);
+}
+
+.a-pop-post:hover{
+    gap: 1rem;
+    color: var(--color-info-dark);
+}
+
+.a-pop-post h3{
+    font-size: 0.7rem;
+}
+
+.pop-post-img{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-light);
+    border-radius: var(--border-radius-1);
+}
+
+.pop-post-img img{
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit:cover;
+    border-radius: var(--border-radius-1);
+}
 
 
 
@@ -132,24 +192,25 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
     padding: var(--card-padding);
     box-shadow: var(--box-shadow);
+    border: 1px solid var(--color-light);
+    background-color: var(--color-white);
 }
 
 .blog-post-sec .post-img{
-    display: flex;
-    flex-direction: column;
     width: 16rem;
-    height: auto;
-    background-color: var(--color-background);
-    object-fit: contain;
+    height: 12rem;
+    object-fit: cover;
+    background-color: var(--color-info-dark);
+    border-radius: var(--border-radius-1);
 }
 
 .blog-post-sec .post-img img{
     width: 16rem;
-    height: auto;
-    object-fit: contain;
+    height: 12rem;
+    object-fit: cover;
 }
 
 
@@ -202,18 +263,30 @@
 .blog-post-sec .post-subject{
     padding: .3rem .6rem;
     font-weight: 500;
-    color: var(--color-dark-variant);
+    font-size: 0.8rem;
+    color: var(--color-info-dark);
     background-color: var(--color-background);
     width: fit-content;
+    transition: var(--transition-1);
+    border-radius: var(--border-radius-1);
+}
+
+.blog-post-sec .post-subject:hover{
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    
 }
 
 .blog-post-sec .post-title .post-info span{
     font-size: 1.2rem;
+    color: var(--color-info-dark);
 }
 
 .blog-post-sec .post-title .post-info p{
     font-size: smaller;
 }
+
+
 
 
 @media only screen and (max-width: 1280px){
