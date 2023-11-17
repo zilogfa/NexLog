@@ -200,6 +200,10 @@
         width: 90%;
     }
 
+    .main-table:hover{
+        width: 100%;
+    }
+
     .main-table .main-top {
         padding: 2rem 2rem;
         gap: 0.8rem;
