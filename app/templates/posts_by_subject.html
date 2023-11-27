@@ -1,0 +1,54 @@
+{% extends 'blog_base.html' %}
+{% block blog %}
+<div class="subject_page_title">
+    <h1>Posts for {{ subject.name }}</h1>
+</div>
+{% if posts %}
+{% for post in posts%}
+<div class="blog-post-sec">
+    <div class="post-img">
+        {% if post.post_pic %}
+        <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
+        {% else %}
+        <img src="{{url_for('static', filename='images/main/blank_post_img3.jpg' )}}">
+        {% endif %}
+    </div>
+    <div class="post-title">
+        <div class="upper">
+            {% if post.subjects %}
+            {% for subject in post.subjects %}
+            <a class="post-subject" href="#">#{{subject.name}}</a>
+            {% endfor %}
+            {% endif %}
+            <div>
+                <h1>{{post.title}}</h1>
+                <h3>{{post.subtitle}}</h3>
+            </div>
+
+            <a class="read-more"
+                href="{{url_for('blog.view_post', user_subdomain=current_user.subdomain, post_id=post.id)}}">Read
+                more...</a>
+
+        </div>
+        <div class="lower">
+            <hr class="line-post">
+            <div class="post-info">
+                <div class="a-span">
+                    <span class="material-icons-round">newspaper</span>
+                    <p>Author: {{ blog.author }}</p>
+                </div>
+                <div class="a-span">
+                    <span class="material-icons-round">calendar_today</span>
+                    <p>{{post.created_at.strftime('%H:%M · %B %Y')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endfor%}
+{% endif %}
+
+
+
+{% endblock %}

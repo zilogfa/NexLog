@@ -1,135 +1,52 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'blog_base.html' %}
+{% block blog %}
 
-<div class="blog-header">
-    <img src="https://www.southdowns.gov.uk/wp-content/uploads/2020/07/close-up-photography-of-leaves-with-droplets-807598.jpg" alt="">
-    <div class="blog-title">
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit reprehenderit obcaecati aliquid.</h3>
-    </div>
-</div>
-
-<div class="blog-container">
-    <aside>
-        <div class="flex-row-span margin-top-2rem">
-            <span class="material-icons-round">co_present</span> <h3>About</h3>
-        </div>
-        <hr class="line-100">
-
-        <div class="author-img">
-            {% if blog.profile_pic %}
-            <img src="{{url_for('static', filename='images/profile/' + blog.profile_pic)}}">
-            {% else %}
-            <img src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}">
-            {% endif %}
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quo suscipit velit architecto exercitationem!</p>
-
-        
-        {% if subjects %}
-            <div class="flex-row-span margin-top-2rem">
-                <span class="material-icons-round">subject</span> <h3>Subjects</h3>
-            </div>
-            <hr class="line-100">
-            {% for subject in subjects %}
-                <a class="aside-subject" href="#">• {{subject.name}}</a>
-            {% endfor %}
-        {% endif %}
-
-
-        <div class="flex-row-span margin-top-2rem">
-            <span class="material-icons-round">wysiwyg</span> <h3>Reader's Favorites</h3>
-        </div>
-        <hr class="line-100">
-        {% if top_posts %}
-            {% for post in top_posts %}
-                <a class="a-pop-post" href="#">
-                    <div class="pop-post-img">
-                        {% if post.post_pic %}
-                        <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
-                        {% endif %}
-                    </div>
-                    <h3>{{post.title}}</h3>
-                </a>
-            {% endfor %}
-        {% endif %}
-        <hr class="line-100">
-
-    </aside>
-
-    <section>
-        {% if posts %}
-        {% for post in posts%}
-        <div class="blog-post-sec">
-            <div class="post-img">
-                {% if post.post_pic %}
-                <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
-                {% else %}
-                <img src="{{url_for('static', filename='images/main/blank_post_img3.jpg' )}}">
-                {% endif %}
-            </div>
-            <div class="post-title">
-                <div class="upper">
-                    {% if post.subjects %}
-                        {% for subject in post.subjects %}
-                        <a class="post-subject" href="#">#{{subject.name}}</a>
-                        {% endfor %}
-                    {% endif %}
-                    <div>
-                        <h1>{{post.title}}</h1>
-                        <h3>{{post.subtitle}}</h3>
-                    </div>
-                    
-                    <a class="read-more" href="#">Read more...</a>
-                   
-                </div>
-                <div class="lower">
-                    <hr class="line-post">
-                    <div class="post-info">
-                        <div class="a-span">
-                            <span class="material-icons-round">newspaper</span>
-                            <p>Author: {{ blog.author }}</p>
-                        </div>
-                        <div class="a-span">
-                            <span class="material-icons-round">calendar_today</span>
-                            <p>{{post.created_at.strftime('%H:%M · %B %Y')}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        {% endfor%}
-        {% endif %}
-    </section>
-
-</div>
-
-
-
-<!-- {% if posts %}
+{% if posts %}
 {% for post in posts%}
+<div class="blog-post-sec">
+    <div class="post-img">
+        {% if post.post_pic %}
+        <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
+        {% else %}
+        <img src="{{url_for('static', filename='images/main/blank_post_img3.jpg' )}}">
+        {% endif %}
+    </div>
+    <div class="post-title">
+        <div class="upper">
+            {% if post.subjects %}
+            {% for subject in post.subjects %}
+            <a class="post-subject"
+                href="{{url_for('blog.posts_by_subject', user_subdomain=current_user.subdomain, subject_id=subject.id)}}">#{{subject.name}}</a>
+            {% endfor %}
+            {% endif %}
+            <div>
+                <h1>{{post.title}}</h1>
+                <h3>{{post.subtitle}}</h3>
+            </div>
 
-<div>
-    <br>
-    <h3>{{post.title}}</h3>
-    <p>{{post.subtitle}}</p>
-    {% if post.post_pic %}
-    <img src="{{ url_for('static', filename='images/post_pictures/' + post.post_pic) }}">
-    {% endif %}
-    <br>
-    <p>{{post.body | safe}}</p>
+            <a class="read-more"
+                href="{{url_for('blog.view_post', user_subdomain=current_user.subdomain, post_id=post.id)}}">Read
+                more...</a>
+
+        </div>
+        <div class="lower">
+            <hr class="line-post">
+            <div class="post-info">
+                <div class="a-span">
+                    <span class="material-icons-round">newspaper</span>
+                    <p>Author: {{ blog.author }}</p>
+                </div>
+                <div class="a-span">
+                    <span class="material-icons-round">calendar_today</span>
+                    <p>{{post.created_at.strftime('%H:%M · %B %Y')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-<br><br><br>
 {% endfor%}
-{% endif %} -->
-
-
-
-
-
-
-
+{% endif %}
 
 
 

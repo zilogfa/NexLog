@@ -216,3 +216,15 @@ def post_subject(post_id):
         return jsonify({'status': 'success'})
     else:
         return jsonify({'status': 'error', 'message': 'Post not found'}), 404
+
+
+
+
+# SETTING Main Page >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# -----------------------------------------------------------------
+
+
+@auth_routes.route('/setting')
+@login_required
+def setting():
+    return render_template('auth/setting.html')

@@ -1,40 +1,76 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, abort
 from flask import Blueprint
 from flask_login import login_required, current_user
 from app import db
-from app.models import Blog, Post, Subject
+from app.models import Blog, Post, Subject, Comment
+from app.forms import CommentForm
 from . import auth_routes
 
 
 blog_routes = Blueprint('blog', __name__, subdomain='<user_subdomain>')
 
+
+def get_subjects_for_blog(blog_id):
+    subjects = Subject.query \
+        .join(Post.subjects) \
+        .filter(Post.blog_id == blog_id) \
+        .distinct().all()
+    return subjects
+
+
 @blog_routes.route('/')
 def blog(user_subdomain):
     blog = Blog.query.filter_by(subdomain=user_subdomain).first()
     posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.created_at.desc()).all()
-    subjects = Subject.query.all()
+    subjects = get_subjects_for_blog(blog.id)
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
     
     return render_template('blog.html', posts=posts, blog=blog, subjects=subjects, top_posts=top_posts)
 
-# @blog_routes.route('/admin_dashboard')
-# @login_required
-# def admin_dashboard():
-#     # if current_user.subdomain != user_subdomain:
-#     #     return redirect(url_for('main.index'))
-#     return render_template('admin_dashboard.html')
+
+@blog_routes.route('/view_post/<int:post_id>', methods=['GET', 'POST'])
+def view_post(user_subdomain, post_id):
+    form = CommentForm()
+    blog = Blog.query.filter_by(subdomain=user_subdomain).first()
+    if not blog:
+        abort(404, description="Blog not found")
+
+    post = Post.query.filter_by(id=post_id, blog_id=blog.id).first()
+    if not post:
+        abort(404, description="Post not found")
+
+    if form.validate_on_submit():
+        new_comment = Comment(
+            post_id= post.id,
+            blog_id= blog.id,
+            name= form.name.data,
+            body = form.body.data
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        print(f'New comment added; Blod ID:{blog.id}; Post ID:{post.id}')
+        return redirect(url_for('blog.view_post', post_id=post.id, user_subdomain=user_subdomain))
+    comments = Comment.query.filter_by(post_id=post_id, blog_id=blog.id).all()  
+    subjects = get_subjects_for_blog(blog.id)
+    top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
+    return render_template('view_post.html', post=post, blog=blog, subjects=subjects, top_posts=top_posts, form=form, subdomain=user_subdomain, comments=comments)
 
 
-# @blog_routes.route('/')
-# def blog():
-#     pass
 
+@blog_routes.route('/subject/<int:subject_id>/posts')
+def posts_by_subject(user_subdomain, subject_id):
+    blog = Blog.query.filter_by(subdomain=user_subdomain).first()
+    if not blog:
+        abort(404, description="Blog not found")
 
-@blog_routes.route('/view_post')
-def view_post():
-    pass
+    subject = Subject.query.filter_by(id=subject_id).first()
+    if not subject:
+        abort(404, description="Subject not found")
 
-
+    posts = Post.query.join(Post.subjects).filter(Subject.id == subject_id, Post.blog_id == blog.id).all()
+    all_subjects = get_subjects_for_blog(blog.id)
+    top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
+    return render_template('posts_by_subject.html', posts=posts, subject=subject, subjects=all_subjects,top_posts=top_posts, blog=blog, subdomain=user_subdomain)
 
 
 

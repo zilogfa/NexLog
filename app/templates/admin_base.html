@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <header class="admin_header">
     <div class="nexlog">
         <a href="{{ url_for('auth.logout') }}" target="_blank">
@@ -15,3 +18,16 @@
 
 
 
+
+
+<div class="admin_main">
+    <div class="admin_sec">
+        {% block admin %}
+        {% endblock%}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

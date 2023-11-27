@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-:root{
+:root {
     --color-primary: #6C9BCF;
     --color-danger: #FF0060;
     --color-success: #1B9C85;
@@ -23,16 +23,16 @@
     --box-shadow-dark: 0 2rem 3rem rgba(23, 26, 13, 0.3);
     --inner-shadow: inset 0.1rem 0.1rem 0.5rem var(--color-light);
 
-    --transition-1: all 0.3s ease ;
+    --transition-1: all 0.3s ease;
 
-    --clr-wheat:#E9D985;
-    --clr-mint:#BCD8C1;
-    --clr-tqz:#439A86;
-    --clr-dark-tqz:#007991;
-    --clr-navy:#222E50; 
+    --clr-wheat: #E9D985;
+    --clr-mint: #BCD8C1;
+    --clr-tqz: #439A86;
+    --clr-dark-tqz: #007991;
+    --clr-navy: #222E50;
 }
 
-.dark-mode{
+.dark-mode {
     --color-background: #181a1e;
     --color-white: #202528;
     --color-dark: #edeffd;
@@ -41,7 +41,7 @@
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     outline: 0;
@@ -51,11 +51,11 @@
     box-sizing: border-box;
 }
 
-html{
+html {
     font-size: 14px;
 }
 
-body{
+body {
     width: 100vw;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
@@ -66,88 +66,89 @@ body{
     background-color: var(--color-background);
 }
 
-a{
+a {
     color: var(--color-dark);
 }
 
-img{
+img {
     display: block;
     width: 100%;
     object-fit: cover;
 }
 
-h1{
+h1 {
     font-weight: 800;
     font-size: 1.8rem;
 }
 
-h2{
+h2 {
     font-weight: 600;
     font-size: 1.4rem;
 }
 
-h3{
+h3 {
     font-weight: 500;
     font-size: 0.87rem;
 }
 
-small{
+small {
     font-size: 0.76rem;
 }
 
-p{
+p {
     color: var(--color-dark-variant);
 }
 
-b{
+b {
     color: var(--color-dark);
 }
 
-strong{
+strong {
     color: var(--color-dark);
 }
 
-.text-muted{
+.text-muted {
     color: var(--color-info-dark);
 }
 
-.primary{
+.primary {
     color: var(--color-primary);
 }
 
-.danger{
+.danger {
     color: var(--color-danger);
 }
 
-.success{
+.success {
     color: var(--color-success);
 }
 
-.warning{
+.warning {
     color: var(--color-warning);
 }
 
 
 
-.bg-primary{
+.bg-primary {
     background-color: var(--color-primary);
 }
 
-.bg-primary{
+.bg-primary {
     background-color: var(--color-primary);
 }
 
 
-.line-100{
+.line-100 {
     border: 1px solid var(--color-light);
+    opacity: .5;
 }
 
-.line-post{
+.line-post {
     border: 1px solid var(--color-light);
     margin: 0.5rem 0;
 }
 
-.flex-row-span{
+.flex-row-span {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -157,7 +158,7 @@ strong{
 
 
 
-.a-span{
+.a-span {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -165,8 +166,8 @@ strong{
     gap: 0.8rem;
 }
 
-.form_btn{
-    background-color: var(--color-dark) ;
+.form_btn {
+    background-color: var(--color-dark);
     height: 2.5rem;
     min-width: 10rem;
     color: var(--color-white);
@@ -175,13 +176,13 @@ strong{
     transition: var(--transition-1);
 }
 
-.form_btn:hover{
+.form_btn:hover {
     background-color: var(--color-dark-variant);
 }
 
 
 
-.form_string{
+.form_string {
     border: 1px solid var(--color-light);
     height: 2.5rem;
     width: 18rem;
@@ -191,7 +192,7 @@ strong{
     border-radius: var(--border-radius-1);
 }
 
-.form_text{
+.form_text {
     border: 1px solid var(--color-light);
     height: 5rem;
     width: 18rem;
@@ -202,7 +203,18 @@ strong{
     border-radius: var(--border-radius-1);
 }
 
-.form_query_select{
+.comment_text {
+    border: 1px solid var(--color-light);
+    height: 5rem;
+    width: 100%;
+    padding: 0.2rem;
+    resize: none;
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    border-radius: var(--border-radius-1);
+}
+
+.form_query_select {
     border: 1px solid var(--color-light);
     min-height: 2.5rem;
     width: 18rem;
@@ -214,6 +226,6 @@ strong{
 
 
 
-.margin-top-2rem{
+.margin-top-2rem {
     margin-top: 2rem;
 }

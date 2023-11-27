@@ -1,5 +1,117 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'blog_base.html' %}
+{% block blog %}
 
-<h1>View Post</h1>
+{% if post %}
+
+{% endif %}
+
+<div class="view_post">
+    <div class="view_post_head">
+        <h1>{{post.title}}</h1>
+        <h3>{{post.subtitle}}</h3>
+    </div>
+
+    <div class="view_post_info">
+        <hr class="line-100">
+        <div class="post-subject">
+            {% if post.subjects %}
+            {% for subject in post.subjects %}
+            <a class="post-subject"
+                href="{{url_for('blog.posts_by_subject', user_subdomain=current_user.subdomain, subject_id=subject.id)}}">#{{subject.name}}</a>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="post_info">
+            <div class="a-span">
+                <span class="material-icons-round">newspaper</span>
+                <p>Author: {{ blog.author }}</p>
+            </div>
+            <div class="a-span">
+                <span class="material-icons-round">calendar_today</span>
+                <p>{{post.created_at.strftime('%H:%M · %B %Y')}}</p>
+            </div>
+        </div>
+        <hr class="line-100">
+    </div>
+
+    <div class="view_post_img">
+        {% if post.post_pic %}
+        <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
+        {% endif %}
+    </div>
+
+    <div class="view_post_body">
+        {{post.body | safe}}
+    </div>
+
+    <hr class="line-100">
+    <hr class="line-100">
+    <div class="view_post_comment">
+        <div class="comment_form">
+            <h3>Comments:</h3>
+            <form method="POST" action="{{ url_for('blog.view_post', user_subdomain=subdomain, post_id=post.id) }}"
+                enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                {{form.name(class="form_string")}}
+                {{form.body(class="comment_text")}}
+                {{form.submit(class="form_btn")}}
+            </form>
+        </div>
+
+        {% if comments %}
+        {% for comment in comments %}
+        <hr class="line-100">
+        <div class="user_comments">
+            <h3>{{comment.name}} <span>{{comment.created_at.strftime('%H:%M · %B %Y')}}</span></h3>
+            <p>{{comment.body}}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+
 {% endblock %}
+
+
+<!-- <div class="blog-post-sec">
+    <div class="post-img">
+        {% if post.post_pic %}
+        <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
+        {% else %}
+        <img src="{{url_for('static', filename='images/main/blank_post_img3.jpg' )}}">
+        {% endif %}
+    </div>
+    <div class="post-title">
+        <div class="upper">
+            {% if post.subjects %}
+            {% for subject in post.subjects %}
+            <a class="post-subject" href="#">#{{subject.name}}</a>
+            {% endfor %}
+            {% endif %}
+            <div>
+                <h1>{{post.title}}</h1>
+                <h3>{{post.subtitle}}</h3>
+            </div>
+
+            <a class="read-more"
+                href="{{url_for('blog.view_post', user_subdomain=current_user.subdomain, post_id=post.id)}}">Read
+                more...</a>
+
+        </div>
+        <div class="lower">
+            <hr class="line-post">
+            <div class="post-info">
+                <div class="a-span">
+                    <span class="material-icons-round">newspaper</span>
+                    <p>Author: {{ blog.author }}</p>
+                </div>
+                <div class="a-span">
+                    <span class="material-icons-round">calendar_today</span>
+                    <p>{{post.created_at.strftime('%H:%M · %B %Y')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> -->

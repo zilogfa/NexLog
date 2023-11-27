@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="blog-header">
+    <img src="https://www.southdowns.gov.uk/wp-content/uploads/2020/07/close-up-photography-of-leaves-with-droplets-807598.jpg"
+        alt="">
+    <div class="home-icon-header">
+        <a class="flex-row-span" href="{{url_for('blog.blog', user_subdomain=current_user.subdomain)}}">
+            <span class="material-icons-round">home</span>
+            <h3>Home</h3>
+        </a>
+    </div>
+    <div class="blog-title">
+        <h1>Lorem ipsum dolor sit amet.</h1>
+        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit reprehenderit obcaecati aliquid.</h3>
+    </div>
+</div>
+
+<div class="blog-container">
+    <aside>
+
+        <div class="flex-row-span">
+            <span class="material-icons-round">co_present</span>
+            <h3>About</h3>
+        </div>
+        <hr class="line-100">
+
+        <div class="author-img">
+            {% if blog.profile_pic %}
+            <img src="{{url_for('static', filename='images/profile/' + blog.profile_pic)}}">
+            {% else %}
+            <img src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}">
+            {% endif %}
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quo suscipit velit architecto
+            exercitationem!</p>
+
+
+        {% if subjects %}
+        <div class="flex-row-span margin-top-2rem">
+            <span class="material-icons-round">subject</span>
+            <h3>Subjects</h3>
+        </div>
+        <hr class="line-100">
+        <a class="aside-subject flex-row-span" href="{{url_for('blog.blog', user_subdomain=current_user.subdomain)}}">
+            <span class="material-icons-round">home</span>
+            Home Page
+        </a>
+        {% for subject in subjects %}
+        <a class="aside-subject"
+            href="{{url_for('blog.posts_by_subject', user_subdomain=current_user.subdomain, subject_id=subject.id)}}">•
+            {{subject.name}}
+        </a>
+        {% endfor %}
+        {% endif %}
+
+
+        <div class="flex-row-span margin-top-2rem">
+            <span class="material-icons-round">wysiwyg</span>
+            <h3>Reader's Favorites</h3>
+        </div>
+        <hr class="line-100">
+        {% if top_posts %}
+        {% for post in top_posts %}
+        <a class="a-pop-post"
+            href="{{url_for('blog.view_post', user_subdomain=current_user.subdomain, post_id=post.id)}}">
+            <div class="pop-post-img">
+                {% if post.post_pic %}
+                <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
+                {% endif %}
+            </div>
+            <h3>{{post.title}}</h3>
+        </a>
+        {% endfor %}
+        {% endif %}
+        <hr class="line-100">
+
+    </aside>
+
+    <section>
+        {% block blog %}
+        {% endblock %}
+
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
