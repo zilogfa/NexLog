@@ -1,0 +1,39 @@
+{% extends 'admin_base.html' %}
+{% block admin %}
+<a class="dashboard_title" href="{{ url_for('auth.admin_dashboard') }}">
+    <span class="material-icons-round">arrow_back</span>
+    <h1>back</h1>
+</a>
+<div class="admin_panel">
+    <h1>Edit Post</h1>
+    <div class="new_subject">
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {{ form.title(class="form_string") }}
+            {{ form.subtitle(class="form_string") }}
+            {{ form.subject() }}
+            <div class="custom-input">
+                {{ form.post_pic(id="registerFile", class="custom-image-input") }}
+                <label for="registerFile" class="custom-image-label"><span
+                        class="material-icons-round">portrait</span>Upload profile picture...</label>
+                {% if form.post_pic.errors %}
+                <ul class="errors">
+                    {% for error in form.post_pic.errors %}
+                    <li style="color: var(--color-danger);">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <!-- Render the CKEditor field -->
+            {{ form.body(class="ckeditor") }}
+            {{ form.submit(class="form_btn") }}
+        </form>
+        {{ ckeditor.config(name='body') }}
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}    

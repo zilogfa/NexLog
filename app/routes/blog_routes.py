@@ -24,6 +24,9 @@ def blog(user_subdomain):
     posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.created_at.desc()).all()
     subjects = get_subjects_for_blog(blog.id)
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
+
+    blog.impressions += 1
+    db.session.commit()
     
     return render_template('blog.html', posts=posts, blog=blog, subjects=subjects, top_posts=top_posts)
 
@@ -53,6 +56,9 @@ def view_post(user_subdomain, post_id):
     comments = Comment.query.filter_by(post_id=post_id, blog_id=blog.id).all()  
     subjects = get_subjects_for_blog(blog.id)
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
+    blog.impressions += 1
+    post.views += 1
+    db.session.commit()
     return render_template('view_post.html', post=post, blog=blog, subjects=subjects, top_posts=top_posts, form=form, subdomain=user_subdomain, comments=comments)
 
 
@@ -70,6 +76,8 @@ def posts_by_subject(user_subdomain, subject_id):
     posts = Post.query.join(Post.subjects).filter(Subject.id == subject_id, Post.blog_id == blog.id).all()
     all_subjects = get_subjects_for_blog(blog.id)
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
+    blog.impressions += 1
+    db.session.commit()
     return render_template('posts_by_subject.html', posts=posts, subject=subject, subjects=all_subjects,top_posts=top_posts, blog=blog, subdomain=user_subdomain)
 
 

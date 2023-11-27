@@ -56,10 +56,10 @@
             </div>
             <hr class="line">
             <div class="btn_sec">
-                <h3><span class="material-icons-round">schedule</span>21:37 • 11/09/2023</h3>
-                <h3><span class="material-icons-round">visibility</span>33</h3>
-                <h3><span class="material-icons-round">mode_comment</span>77</h3>
-                <a href="#">
+                <h3><span class="material-icons-round">schedule</span>{{post.created_at.strftime('%H:%M · %B %Y')}}</h3>
+                <h3><span class="material-icons-round">visibility</span>{{post.views}}</h3>
+                <h3><span class="material-icons-round">mode_comment</span>{{ post.comments|length}}</h3>
+                <a href="{{ url_for('auth.edit_post', post_id=post.id) }}">
                     <span class="material-icons-round">edit_note</span>
                     <h3>Edit</h3>
                 </a>

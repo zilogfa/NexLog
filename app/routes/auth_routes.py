@@ -21,30 +21,33 @@ from flask import current_app
 auth_routes = Blueprint('auth', __name__)
 
 
-# Login >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Save Pictures >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def save_post_picture(file):
-    if not file:
-        return None
-    # Generating a secure random string as the filename
-    random_hex = secrets.token_hex(8)
-    # Getting the file extension
-    _, file_extension = os.path.splitext(file.filename)
-    # Creating a new filename using the random string and the original extension
-    new_filename = random_hex + file_extension
-    # Setting the destination folder to save the post pictures
-    destination = os.path.join(
-        current_app.root_path, 'static/images/post_pictures', new_filename)
+    # Check if the file is a new file upload
+    if hasattr(file, 'filename') and file.filename != '':
+        # Generating a secure random string as the filename
+        random_hex = secrets.token_hex(8)
+        _, file_extension = os.path.splitext(file.filename)
+        # Creating a new filename using the random string and the original extension
+        new_filename = random_hex + file_extension
+        # Setting the destination folder to save the post pictures
+        destination = os.path.join(
+            current_app.root_path, 'static/images/post_pictures', new_filename)
 
-    # Resize the image to a desired size (optional)
-    output_size = (1200, 1200)  # Adjust the size as needed
-    image = Image.open(file)
-    image.thumbnail(output_size)
+        # Resize the image to a desired size (optional)
+        output_size = (1200, 1200)  # Adjust the size as needed
+        image = Image.open(file)
+        image.thumbnail(output_size)
 
-    # Saving the resized image to the destination folder
-    image.save(destination)
+        # Saving the resized image to the destination folder
+        image.save(destination)
 
-    # Returning the filename to store in the database
-    return new_filename
+        # Returning the filename to store in the database
+        return new_filename
+    else:
+        # It's not a new file upload, return the existing filename or None
+        return file
 
 
 # -------- Globally to all render_templates ---------------------------------------
@@ -113,7 +116,7 @@ def logout():
 @auth_routes.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.created_at.desc()).all()
     # if current_user.subdomain != user_subdomain:
     #     return redirect(url_for('main.index'))
     return render_template('auth/admin_dashboard.html', current_user=current_user, posts=posts)
@@ -217,6 +220,33 @@ def post_subject(post_id):
     else:
         return jsonify({'status': 'error', 'message': 'Post not found'}), 404
 
+# Edit_post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# -----------------------------------------------------------------
+
+
+@auth_routes.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def edit_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    form = PostForm(obj=post)
+    if form.validate_on_submit():
+        print('form is valid')
+
+        post.title=form.title.data
+        post.subtitle=form.subtitle.data
+        if form.post_pic.data:
+            post.post_pic = save_post_picture(form.post_pic.data)
+        post.body=form.body.data
+
+        # Update subjects if needed
+        if form.subject.data:
+            post.subjects.append(form.subject.data)  
+
+        db.session.commit()
+
+        print(f'post updated: {form.title.data}')
+        return redirect(url_for('auth.admin_dashboard'))
+    return render_template('auth/edit_post.html', current_user=current_user, form=form, post=post)
 
 
 
