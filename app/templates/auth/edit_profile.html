@@ -10,12 +10,28 @@
     <div class="edit_profile">
         <form method="POST">
             {{ form.hidden_tag() }}
+            <div>
+                <h3>Blog Title:</h3>
+                {{ form.blog_title(class="form_string")}}
+            </div>
             
-            {{ form.blog_title(class="form_string")}}
-            {{ form.blog_subtitle(class="form_string")}}
-            {{ form.blog_about(class="form_text")}}
+            <div>
+                <h3>Blog subtitle:</h3>
+                {{ form.blog_subtitle(class="form_string")}}
+            </div>
+            
+            <div>
+                <h3>About blog:</h3>
+                {{ form.blog_about(class="form_text")}}
+            </div>
+            
             <hr class="hr-100">
-            {{ form.author(class="form_string")}}
+
+            <div>
+                <h3>Author name:</h3>
+                {{ form.author(class="form_string")}}
+            </div>
+            
             {{ form.submit(class="form_btn")}}
         </form>
     </div>

@@ -483,8 +483,12 @@
 .admin_panel .edit_profile form{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
     margin: 4rem 0;
+}
+
+.admin_panel .edit_profile form h3{
+    color: var(--color-info-dark);
 }
 
 
