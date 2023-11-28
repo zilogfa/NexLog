@@ -20,3 +20,11 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(max=60)])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+
+class ProfileForm(FlaskForm):
+    blog_title = StringField('Blog title', validators=[DataRequired(), Length(max=40)])
+    blog_subtitle = StringField('Blog title', validators=[Length(max=100)])
+    blog_about = TextAreaField('Comment', validators=[Length(max=500)], render_kw={"placeholder": "About Blog"})
+    author = StringField('Author Name', validators=[DataRequired()])
+    submit = SubmitField('Submit')    

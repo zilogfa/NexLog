@@ -98,6 +98,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     padding: 1rem;
 }
@@ -112,6 +113,7 @@
 .admin_info .admin_bio {
     display: flex;
     flex-direction: column;
+    justify-content: ;
     gap: 1rem;
 }
 
@@ -145,6 +147,26 @@
 }
 
 
+.admin_panel .analysis{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.admin_panel .analysis div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 2rem;
+    width: 16rem;
+    background-color: var(--color-background);
+    border-radius: var(--border-radius-1);
+}
 
 
 
@@ -154,7 +176,7 @@
 
 .admin_panel .new_post_btn {
     display: flex;
-    flex-direction: row;
+    flex-direction:row;
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -167,9 +189,9 @@
     align-items: center;
     margin: 1rem 0;
     justify-content: center;
+    font-weight: 700;
     gap: 0.5rem;
-    width: 12rem;
-    height: 3rem;
+    padding: 0.8rem;
     border-radius: var(--border-radius-1);
     color: var(--color-white);
     background-color: var(--color-primary);
@@ -177,7 +199,7 @@
 }
 
 .new_post_btn a:hover {
-    background-color: var(--color-dark-variant);
+    opacity: 0.8;
 }
 
 .new_post_btn a:active {

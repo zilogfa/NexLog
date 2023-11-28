@@ -15,33 +15,43 @@
         </div>
         <div class="admin_bio">
             <h3>Hello, {{current_user.author}}</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, sequi dolor nam similique ullam ea!
-                Enim vero accusamus cumque ipsa?</p>
             <a href="{{ url_for('auth.setting') }}"><span class="material-icons-round">tune</span>Setting</a>
         </div>
     </div>
     <!-- END admin info -->
-
+    <hr class="hr-100">
 
 
     <!-- Analysis -->
     <div class="analysis">
-
+        <div>
+            <span class="material-icons-round">trending_up</span>
+            <p>Blog Impressions:</p>
+            <h1>{{current_user.impressions}}</h1>
+        </div>
+        <div>
+            <span class="material-icons-round">sticky_note_2</span>
+            <p>Total Posts:</p>
+            <h1>{{current_user.posts | length}}</h1>
+        </div>
+        <div>
+            <span class="material-icons-round">question_answer</span>
+            <p>Recivied Comments:</p>
+            <h1>{{current_user.comments | length}}</h1>
+        </div>
     </div>
     <!-- END analysis -->
-
-
+    <hr class="hr-100">
 
     <!-- admin btn's -->
     <div class="new_post_btn">
-        <a href="{{ url_for('auth.create_post') }}"><span class="material-icons-round">post_add</span>Create New
-            Post</a>
-        <a href="{{url_for('auth.create_subject')}}"><span class="material-icons-round">subject</span>Create Subject</a>
+        <a href="{{ url_for('auth.create_post') }}"><span class="material-icons-round">add</span>New Post</a>
+        <a href="{{url_for('auth.create_subject')}}"><span class="material-icons-round">subject</span>Subject</a>
     </div>
     <!-- end btn's -->
 
 
-
+    <hr class="hr-100">
     <!-- Pre Posts -->
     <div class="pre_posts">
         <h1>Published Posts</h1>

@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, login_required, current_user, l
 
 from app import db, bcrypt
 from app.models import Blog, Subject, Post, Comment
-from app.forms.auth_forms import LoginForm, RegistrationForm
+from app.forms.auth_forms import LoginForm, RegistrationForm, ProfileForm
 from app.forms.post_forms import PostForm, SubjectForm
 from app.routes.blog_routes import blog_routes
 from . import auth_routes
@@ -259,3 +259,20 @@ def edit_post(post_id):
 def setting():
     return render_template('auth/setting.html')
 
+
+# Edit Profile >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@auth_routes.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    blog = Blog.query.filter_by(id=current_user.id).first()
+    form = ProfileForm(obj=blog)
+    if form.validate_on_submit():
+        print('Profile form is valid')
+        blog.blog_title = form.blog_title.data
+        blog.blog_subtitle = form.blog_subtitle.data
+        blog.blog_about = form.blog_about.data
+        blog.author = form.author.data
+        db.session.commit()
+
+        return redirect(url_for('auth.admin_dashboard'))
+    return render_template('auth/edit_profile.html', current_user=current_user, form=form)

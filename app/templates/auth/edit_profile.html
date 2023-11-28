@@ -1,0 +1,26 @@
+{% extends 'admin_base.html' %}
+{% block admin %}
+<a class="dashboard_title" href="{{ url_for('auth.setting') }}">
+    <span class="material-icons-round">arrow_back</span>
+    <h1>back</h1>
+</a>
+<div class="admin_panel">
+    <h1>Create Subject</h1>
+
+    <div class="edit_profile">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            {{ form.blog_title(class="form_string")}}
+            {{ form.blog_subtitle(class="form_string")}}
+            {{ form.blog_about(class="form_text")}}
+            <hr class="hr-100">
+            {{ form.author(class="form_string")}}
+            {{ form.submit(class="form_btn")}}
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}
