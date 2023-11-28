@@ -28,7 +28,7 @@ def blog(user_subdomain):
     blog.impressions += 1
     db.session.commit()
     
-    return render_template('blog.html', posts=posts, blog=blog, subjects=subjects, top_posts=top_posts)
+    return render_template('blog.html', posts=posts, blog=blog, subjects=subjects, top_posts=top_posts, subdomain=user_subdomain)
 
 
 @blog_routes.route('/view_post/<int:post_id>', methods=['GET', 'POST'])

@@ -258,3 +258,4 @@ def edit_post(post_id):
 @login_required
 def setting():
     return render_template('auth/setting.html')
+
