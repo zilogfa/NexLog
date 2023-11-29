@@ -3,10 +3,10 @@
 {% block content %}
 
 <div class="login">
-    <h1>{{title}} Page</h1>
+    
     <div class="login-table">
         <div class="table-head">
-            <h3>Share you idea</h3>
+            <h1>{{title}} Page</h1>
         </div>
         <div>
             <form method="POST" action="{{ url_for('auth.login') }}">
@@ -23,7 +23,7 @@
                     <label for="">Remeber me:</label>
                     {{ form.remember(class="") }}
                 </div>            
-                <button type="submit" class="">Login</button>
+                <button type="submit" class="login-btn">Login</button>
             </form>
         </div>
         

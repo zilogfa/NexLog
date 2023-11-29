@@ -1,12 +1,34 @@
 {% extends 'admin_base.html' %}
 {% block admin %}
-<a class="dashboard_title" href="{{ url_for('auth.create_subject') }}">
+<a class="dashboard_title" href="{{ url_for('auth.setting') }}">
     <span class="material-icons-round">arrow_back</span>
     <h1>back</h1>
 </a>
 <div class="admin_panel">
     <h1>Edit profile picture</h1>
-
+    <div class="edit_profile">
+        {% if current_user.profile_pic %}
+            <img class="profile_pic" src="{{url_for('static', filename='images/profile_pictures/' + current_user.profile_pic)}}">
+            {% else %}
+            <img class="profile_pic" src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}">
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="custom-input">
+                {{ form.profile_pic(id="registerFile", class="custom-image-input") }}
+                <label for="registerFile" class="custom-image-label"><span
+                        class="material-icons-round">portrait</span>Upload profile picture...</label>
+                {% if form.profile_pic.errors %}
+                <ul class="errors">
+                    {% for error in form.profile_pic.errors %}
+                    <li style="color: var(--color-danger);">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {{ form.submit(class="form_btn") }}
+        </form>
+    </div>
 
 </div>
 

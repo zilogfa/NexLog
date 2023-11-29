@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, login_required, current_user, l
 
 from app import db, bcrypt
 from app.models import Blog, Subject, Post, Comment
-from app.forms.auth_forms import LoginForm, RegistrationForm, ProfileForm
+from app.forms.auth_forms import LoginForm, RegistrationForm, ProfileForm, ProfilePicForm, HeaderPicForm
 from app.forms.post_forms import PostForm, SubjectForm
 from app.routes.blog_routes import blog_routes
 from . import auth_routes
@@ -35,8 +35,8 @@ def save_post_picture(file):
         destination = os.path.join(
             current_app.root_path, 'static/images/post_pictures', new_filename)
 
-        # Resize the image to a desired size (optional)
-        output_size = (1200, 1200)  # Adjust the size as needed
+        # Resizing the image to a desired size (optional)
+        output_size = (1000, 1000)  # Adjust the size as needed
         image = Image.open(file)
         image.thumbnail(output_size)
 
@@ -46,9 +46,48 @@ def save_post_picture(file):
         # Returning the filename to store in the database
         return new_filename
     else:
-        # It's not a new file upload, return the existing filename or None
+        # It's not a new file upload, returning the existing filename or None
         return file
 
+def save_profile_picture(file):
+    if hasattr(file, 'filename') and file.filename != '':
+        random_hex = secrets.token_hex(8)
+        _, file_extension = os.path.splitext(file.filename)
+        new_filename = random_hex + file_extension
+        destination = os.path.join(
+            current_app.root_path, 'static/images/profile_pictures', new_filename)
+
+        output_size = (600, 600) 
+        image = Image.open(file)
+        width, height = image.size
+        size = min(width, height)
+        left = (width - size) / 2
+        top = (height - size) / 2
+        right = (width + size) / 2
+        bottom = (height + size) / 2
+        image = image.crop((left, top, right, bottom))
+        image.thumbnail(output_size)
+        image.save(destination)
+        return new_filename
+    else:
+        return file
+    
+def save_header_picture(file):
+    if hasattr(file, 'filename') and file.filename != '':
+        random_hex = secrets.token_hex(8)
+        _, file_extension = os.path.splitext(file.filename)
+        new_filename = random_hex + file_extension
+        destination = os.path.join(
+            current_app.root_path, 'static/images/header_pictures', new_filename)
+
+        output_size = (1800, 1800) 
+        image = Image.open(file)
+        image.thumbnail(output_size)
+        image.save(destination)
+        return new_filename
+    else:
+        return file
+    
 
 # -------- Globally to all render_templates ---------------------------------------
 @auth_routes.before_request
@@ -185,6 +224,7 @@ def delete_subject(subject_id):
 def create_post():
     form = PostForm()
     posts = Post.query.all()
+
     blog_id = current_user.id
     if form.validate_on_submit():
         print('form is valid')
@@ -276,3 +316,32 @@ def edit_profile():
 
         return redirect(url_for('auth.admin_dashboard'))
     return render_template('auth/edit_profile.html', current_user=current_user, form=form)
+
+# Edit Profile Picture >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@auth_routes.route('/edit_profile_picture', methods=['GET', 'POST'])
+@login_required
+def edit_profile_picture():
+    blog = Blog.query.filter_by(id=current_user.id).first()
+    form = ProfilePicForm(obj=blog)
+    if form.validate_on_submit():
+        if form.profile_pic.data:
+            blog.profile_pic = save_profile_picture(form.profile_pic.data)
+        db.session.commit()
+        print(f'Header Pic changed/Form was valid; {blog.profile_pic}')
+        return redirect(url_for('auth.admin_dashboard'))
+    return render_template('auth/edit_profile_picture.html', current_user=current_user, form=form, blog=blog)
+
+
+# Edit Header Picture >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+@auth_routes.route('/edit_header_picture', methods=['GET', 'POST'])
+@login_required
+def edit_header_picture():
+    blog = Blog.query.filter_by(id=current_user.id).first()
+    form = HeaderPicForm(obj=blog)
+    if form.validate_on_submit():
+        if form.header_pic.data:
+            blog.header_pic = save_header_picture(form.header_pic.data)
+        db.session.commit()
+        print(f'Header Pic changed/Form was valid; {form.header_pic.data}')
+        return redirect(url_for('auth.admin_dashboard'))
+    return render_template('auth/edit_header_picture.html', current_user=current_user, form=form, blog=blog)

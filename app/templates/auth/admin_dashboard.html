@@ -9,8 +9,22 @@
 <div class="admin_panel">
     <!-- admin info -->
     <div class="admin_info">
+        <div class="admin_header">
+            {% if current_user.header_pic %}
+                <img src="{{url_for('static', filename='images/header_pictures/' + current_user.header_pic)}}">
+            {% endif %}
+            <div class="admin_title">
+                <h1>{{current_user.blog_title}}</h1>
+                <h3>{{current_user.blog_subtitle}}</h3>
+            </div>
+        </div>
+        
         <div class="admin_img">
-            <img src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}" alt="">
+            {% if current_user.profile_pic %}
+            <img src="{{url_for('static', filename='images/profile_pictures/' + current_user.profile_pic)}}">
+            {% else %}
+            <img src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}">
+            {% endif %}
 
         </div>
         <div class="admin_bio">

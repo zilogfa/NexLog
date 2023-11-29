@@ -1,48 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexLog</title>
-    <!-- <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/logo/favicon.ico')}}"> -->
+{% extends 'base.html' %}
+{% include 'header.html' %}
+{% block content %}
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{url_for('static', filename='css/root.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
-    <style>
-
-        form {
-            margin: 4rem;
-            display: flex;
-            flex-direction: column;
-            background-color: rgb(255, 255, 255);
-            color: rgb(138, 138, 138);
-            border-radius: 10px;
-            gap: 1rem;
-            width: 28rem;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-        form > *{
-            display: flex; 
-            flex-direction: column;
-        }
-
-        .form-control {
-            background-color: whitesmoke;
-            height: 2.5rem;
-            width: 20rem;
-            border-radius: 2px;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>{{title}} Page</h1>
-
-    <div>
+<div class="login">
+    <div class="login-table">
+        <div class="table-head">
+            <h1>{{title}} Page</h1>
+        </div>
+        <div>
         <form method="POST" action="{{ url_for('auth.register') }}">
             {{ form.hidden_tag() }}
             <div>
@@ -50,7 +15,7 @@
                 {{ form.email(class="form-control") }}
             </div>
             <div>
-                <label for="">blogname.nexlog.co:</label>
+                <label for="">blogname.nexlog:</label>
                 {{ form.subdomain(class="form-control") }}
             </div>
             <div>
@@ -74,10 +39,13 @@
                 {{ form.confirm_password(class="form-control") }}
             </div>
             
-            {{ form.submit }}
+            {{ form.submit(class="login-btn") }}
         </form>
     </div>
-    
-    <script src="{{url_for('static', filename='js/index.js')}}"></script>
-</body>
-</html>
+        
+</div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

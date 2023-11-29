@@ -424,75 +424,40 @@
 }
 
 
-/* SETTING PAGE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
-.admin_panel .setting-tab{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2rem 0rem;
-    background-color: var(--color-background);
-    border-radius: var(--border-radius-1);
-    padding: 1rem;
+
+
+.blog-footer{
+    width: 100vw;
+    padding: 4rem 0;
+    background-color: var(--color-dark);
+    justify-content: center;
 }
 
-.admin_panel .setting-tab .setting-title{
+.blog-footer .footer-content{
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-light);
 }
 
-.admin_panel .setting-tab .setting-title span{
-    font-size: 2.8rem;
+.blog-footer .footer-content h3{
+    color: var(--color-background);
+    opacity: 0.7;
+    font-size: 1.1rem;
 }
 
-.admin_panel .setting-tab .setting-title h3{
+.blog-footer .footer-content a{
+    color: var(--color-background);
+    opacity: 0.3;
     font-size: 1.4rem;
 }
 
-.admin_panel .setting-tab .setting-btn a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    width: 6rem;
-    background-color: var(--color-dark);
-    border-radius: 50px;
-    transition: var(--transition-1);
+.blog-footer .footer-content a:hover{
+    opacity: 0.2;
 }
-
-.admin_panel .setting-tab .setting-btn a span{
-    color: var(--color-white);
-}
-
-.admin_panel .setting-tab .setting-btn a:hover{
-    box-shadow: var(--box-shadow);
-    width: 7rem;
-    opacity: 0.8;
-}
-
-.admin_panel .setting-tab .setting-btn a:active{
-    transform: scale(0.9);
-    background-color: var(--color-dark-variant);
-}
-
-
-/* SETTING PAGE >>>>>> */
-
-.admin_panel .edit_profile form{
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    margin: 4rem 0;
-}
-
-.admin_panel .edit_profile form h3{
-    color: var(--color-info-dark);
-}
-
-
-
 
 
 @media only screen and (max-width: 1280px) {
