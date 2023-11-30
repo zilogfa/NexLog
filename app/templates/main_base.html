@@ -6,27 +6,23 @@
 
     <div class="main-table">
         <div class="main-top">
-            <div class="about-link">
-                <a href="{{ url_for('main.about') }}">About nexlog</a>
-            </div>
             <div class="logo-sec">
                 <h3>NEXLOG</h3>
             </div>
-            
             <div class="login-div">
                 <a href="{{ url_for('auth.login') }}"><span class="material-icons-round">login</span>Login</a>
             </div>
         </div>
 
         <div class="main-info">
+            <div>
 
-            
+            </div>
             <div class="img-sec">
                 
                 <img src="{{url_for('static', filename='images/main/blog-img.png')}}">
                 <h3><span>YourName</span>.nexlog</h3>
             </div>
-
             <div class="register-div">
                 <h3>Your favorite place to blog and share ideas.</h3>
                 <div class="features">

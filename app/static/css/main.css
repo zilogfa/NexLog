@@ -13,7 +13,7 @@
     flex-direction: column;
     position: relative;
     padding: 2rem;
-    width: 70rem;
+    width: 78rem;
     min-height: 50rem;
     background-color: var(--clr-dark-tqz);
     border-radius: var(--border-radius-1);
@@ -21,11 +21,11 @@
     transition: var(--transition-1);
 }
 
-.main-table:hover{
+/* .main-table:hover{
     width: 74rem;
     box-shadow: var(--box-shadow);
     transition: var(--transition-1);
-}
+} */
 
 
 .main-table .main-top {
@@ -38,17 +38,43 @@
     color: var(--clr-mint);
 }
 
-.main-table .main-top .logo-sec h3{
-    font-size: 1.6rem;
+.main-table .main-top .about-link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 0.3rem 2rem;
+    height: 2.5rem;
+    color: var(--clr-mint);
+    border:1px solid var(--clr-tqz);
+    border-radius: var(--card-border-radius);
+    color: var(--clr-mint);
+    font-weight: bold;
+    gap: 1rem;
+    transition: var(--transition-1);
 }
+
+
+
+.main-table .main-top .about-link:hover{
+    color: var(--clr-tqz);
+    background-color: var(--clr-mint);
+}
+
+
+.main-table .main-top .logo-sec h3{
+    font-size: 1.8rem;
+}
+
 
 .main-table .main-top .login-div a{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 10rem;
-    height: 2.5rem;
+    width: fit-content;
+    padding: 0.3rem 2rem;
     color: var(--clr-mint);
     background-color: var(--clr-tqz);
     border-radius: var(--card-border-radius);
@@ -191,18 +217,50 @@
 
 
 
+/*ABOUT >>>>>>>>>>*/
 
+.main-table .about-section{
+    display: flex;
+    flex-direction: column;
+    margin: 3rem 0;
+    padding: 0 2rem;
+    gap: 3rem;
+    color: var(--clr-mint);
+}
 
+.main-table .about-section p{
+    color: var(--clr-mint);
+}
+
+.main-table .about-section .about-title{
+    text-align: center;
+}
+
+.about-features, 
+.about-features > *{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.about-features h3{
+    font-weight: 500;
+    font-size: 1.2rem;
+}
 
 
 @media only screen and (max-width: 1280px) {
-    .main-table {
-        width: 90%;
+    .main-table .main-top .logo-sec{
+        display: none;
     }
 
-    .main-table:hover{
+    .main-table {
         width: 100%;
     }
+
+    /* .main-table:hover{
+        width: 100%;
+    } */
 
     .main-table .main-top {
         padding: 2rem 2rem;

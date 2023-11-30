@@ -1,7 +1,7 @@
 .blog-header {
     width: 100vw;
     height: 30rem;
-    background-color: var(--color-dark);
+    background-color: var(--clr-black);
     position: relative;
 }
 
@@ -122,8 +122,11 @@
     object-fit: contain;
     width: 100%;
     height: auto;
-    border-radius: 100%;
+    border-radius: 5%;
+    border: 2px solid var(--color-background);
+    transition: var(--transition-1);
 }
+
 
 
 
@@ -264,7 +267,7 @@
 .blog-post-sec .read-more {
     padding: .3rem .6rem;
     margin: .4rem 0;
-    background-color: var(--color-primary);
+    background-color: var(--color-dark);
     color: var(--color-white);
     font-weight: bold;
     font-size: smaller;
@@ -430,7 +433,7 @@
 .blog-footer{
     width: 100vw;
     padding: 4rem 0;
-    background-color: var(--color-dark);
+    background-color: var(--clr-black);
     justify-content: center;
 }
 

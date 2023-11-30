@@ -11,31 +11,31 @@
         <form method="POST" action="{{ url_for('auth.register') }}">
             {{ form.hidden_tag() }}
             <div>
-                <label for="">Email:</label>
+                <label for="">Email *</label>
                 {{ form.email(class="form-control") }}
             </div>
             <div>
-                <label for="">blogname.nexlog:</label>
+                <label for=""><strong>blogname</strong>.nexlog *</label>
                 {{ form.subdomain(class="form-control") }}
             </div>
             <div>
-                <label for="">Blog Title:</label>
+                <label for="">Blog Title *</label>
                 {{ form.blog_title(class="form-control") }}
             </div>
             <div>
-                <label for="">Blog subtitle:</label>
+                <label for="">Blog subtitle</label>
                 {{ form.blog_subtitle(class="form-control") }}
             </div>
             <div>
-                <label for="">Author:</label>
+                <label for="">Author *</label>
                 {{ form.author(class="form-control") }}
             </div>
             <div>
-                <label for="">Password:</label>
+                <label for="">Password *</label>
                 {{ form.password(class="form-control") }}
             </div>
             <div>
-                <label for="">Confirm Password:</label>
+                <label for="">Confirm Password *</label>
                 {{ form.confirm_password(class="form-control") }}
             </div>
             
@@ -44,6 +44,8 @@
     </div>
         
 </div>
+
+
 </div>
 
 

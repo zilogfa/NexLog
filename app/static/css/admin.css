@@ -148,12 +148,18 @@
 }
 
 
+.admin_info .admin_img{
+    position: relative;
+    top: -2rem;
+}
 
 .admin_info .admin_img img {
     width: 12rem;
     height: auto;
     object-fit: cover;
-    border-radius: 100px;
+    border-radius: 15px;
+    border: 6px solid var(--color-white);
+    box-shadow: var(--box-shadow);
 }
 
 .admin_info .admin_bio {
@@ -492,9 +498,11 @@
 }
 
 .admin_panel .edit_profile .profile_pic{
-    width: 12rem;
+    margin-top: 4rem;
+    width: 18rem;
     height: auto;
-    border-radius: 100%;
+    border-radius: 5%;
+    border: 1px solid var(--color-light);
 }
 
 .admin_panel .edit_profile .header_pic{
