@@ -19,6 +19,7 @@ class Blog(db.Model, UserMixin):
     author_bio = db.Column(db.Text, nullable=True)
     profile_pic = db.Column(db.String(20), nullable=True)
     header_pic = db.Column(db.String(20), nullable=True)
+    url = db.Column(db.String(60), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     impressions = db.Column(db.Integer, default=0)
     is_block = db.Column(db.Boolean, default=False)

@@ -11,7 +11,7 @@
         <form method="POST">
             {{ form.hidden_tag() }}
             <div>
-                <h3>Blog Title:</h3>
+                <h3>Blog Title: *</h3>
                 {{ form.blog_title(class="form_string")}}
             </div>
             
@@ -28,8 +28,13 @@
             <hr class="hr-100">
 
             <div>
-                <h3>Author name:</h3>
+                <h3>Author name: *</h3>
                 {{ form.author(class="form_string")}}
+            </div>
+
+            <div>
+                <h3>URL: <span class="xx-small-font">(Max 46 Char)</span> </h3>
+                {{ form.url(class="form_string")}}
             </div>
             
             {{ form.submit(class="form_btn")}}

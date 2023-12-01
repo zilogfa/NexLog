@@ -80,7 +80,7 @@ def save_header_picture(file):
         destination = os.path.join(
             current_app.root_path, 'static/images/header_pictures', new_filename)
 
-        output_size = (1800, 1800) 
+        output_size = (2800, 2800) 
         image = Image.open(file)
         image.thumbnail(output_size)
         image.save(destination)
@@ -253,7 +253,11 @@ def create_post():
 def post_subject(post_id):
     post = Post.query.filter_by(id=post_id).first()
     if post:
-        print('form is valid')
+        if post.post_pic:
+            file_path = os.path.join(current_app.root_path, 'static/images/post_pictures', post.post_pic)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                print("File removed successfully")
         db.session.delete(post)
         db.session.commit()
         return jsonify({'status': 'success'})
@@ -275,6 +279,11 @@ def edit_post(post_id):
         post.title=form.title.data
         post.subtitle=form.subtitle.data
         if form.post_pic.data:
+            if post.post_pic:
+                file_path = os.path.join(current_app.root_path, 'static/images/post_pictures', post.post_pic)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+                    print("File removed successfully")
             post.post_pic = save_post_picture(form.post_pic.data)
         post.body=form.body.data
 
@@ -312,6 +321,7 @@ def edit_profile():
         blog.blog_subtitle = form.blog_subtitle.data
         blog.blog_about = form.blog_about.data
         blog.author = form.author.data
+        blog.url = form.url.data
         db.session.commit()
 
         return redirect(url_for('auth.admin_dashboard'))
@@ -325,11 +335,29 @@ def edit_profile_picture():
     form = ProfilePicForm(obj=blog)
     if form.validate_on_submit():
         if form.profile_pic.data:
+            if blog.profile_pic: #deleting previouse profile picture
+                file_path = os.path.join(current_app.root_path, 'static/images/profile_pictures', blog.profile_pic)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+                    print("File removed successfully")
             blog.profile_pic = save_profile_picture(form.profile_pic.data)
         db.session.commit()
         print(f'Header Pic changed/Form was valid; {blog.profile_pic}')
         return redirect(url_for('auth.admin_dashboard'))
     return render_template('auth/edit_profile_picture.html', current_user=current_user, form=form, blog=blog)
+
+@auth_routes.route('/delete_profile_picture')
+@login_required
+def delete_profile_picture():
+    blog = Blog.query.filter_by(id=current_user.id).first()
+    if blog.profile_pic: #deleting previouse header pic
+        file_path = os.path.join(current_app.root_path, 'static/images/profile_pictures', blog.profile_pic)
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            print("File removed successfully")
+    blog.profile_pic = None
+    db.session.commit()
+    return redirect(url_for('auth.admin_dashboard'))
 
 
 # Edit Header Picture >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -340,8 +368,26 @@ def edit_header_picture():
     form = HeaderPicForm(obj=blog)
     if form.validate_on_submit():
         if form.header_pic.data:
+            if blog.header_pic:
+                file_path = os.path.join(current_app.root_path, 'static/images/header_pictures', blog.header_pic)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
             blog.header_pic = save_header_picture(form.header_pic.data)
         db.session.commit()
         print(f'Header Pic changed/Form was valid; {form.header_pic.data}')
         return redirect(url_for('auth.admin_dashboard'))
     return render_template('auth/edit_header_picture.html', current_user=current_user, form=form, blog=blog)
+
+@auth_routes.route('/delete_header_picture')
+@login_required
+def delete_header_picture():
+    blog = Blog.query.filter_by(id=current_user.id).first()
+    if blog.header_pic:
+        file_path = os.path.join(current_app.root_path, 'static/images/header_pictures', blog.header_pic)
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            print("File removed successfully")
+
+    blog.header_pic = None
+    db.session.commit()
+    return redirect(url_for('auth.admin_dashboard'))

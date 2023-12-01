@@ -9,6 +9,10 @@
     <div class="edit_profile">
         {% if blog.header_pic %}
                 <img class="header_pic" src="{{url_for('static', filename='images/header_pictures/' + blog.header_pic)}}">
+
+                <div>
+                    <a class="a-btn bg-danger" href="{{ url_for('auth.delete_header_picture') }}">Delete Header Picture</a>
+                </div>
         {% endif %}
         <form method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag() }}

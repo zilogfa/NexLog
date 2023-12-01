@@ -35,6 +35,14 @@
         </div>
         <p>{{blog.blog_about}}</p>
 
+        {% if blog.url %}
+            <a class="a-span a-btn bg-primary" href="{{blog.url}}" target="_blank">
+                <span class="material-icons-round">link</span>
+                <span class="font-size-05">{{blog.url}}</span>
+                
+            </a>
+        {% endif %}
+
 
         
         <div class="flex-row-span margin-top-2rem">

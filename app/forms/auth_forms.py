@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FileField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FileField, BooleanField, URLField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from flask_wtf.file import FileField, FileAllowed
 
@@ -26,8 +26,9 @@ class LoginForm(FlaskForm):
 class ProfileForm(FlaskForm):
     blog_title = StringField('Blog title', validators=[DataRequired(), Length(max=40)])
     blog_subtitle = StringField('Blog title', validators=[Length(max=100)])
-    blog_about = TextAreaField('Comment', validators=[Length(max=500)], render_kw={"placeholder": "About Blog"})
+    blog_about = TextAreaField('Comment', validators=[Length(max=500)])
     author = StringField('Author Name', validators=[DataRequired()])
+    url = URLField('URL', validators=[Length(max=46)])
     submit = SubmitField('Submit')    
 
 

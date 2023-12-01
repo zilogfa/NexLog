@@ -9,6 +9,9 @@
     <div class="edit_profile">
         {% if current_user.profile_pic %}
             <img class="profile_pic" src="{{url_for('static', filename='images/profile_pictures/' + current_user.profile_pic)}}">
+            <div>
+                <a class="a-btn bg-danger" href="{{ url_for('auth.delete_profile_picture') }}">Delete Profile Picture</a>
+            </div>
             {% else %}
             <img class="profile_pic" src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}">
         {% endif %}
