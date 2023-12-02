@@ -1,0 +1,49 @@
+{% extends 'admin_base.html' %}
+{% block admin %}
+<a class="dashboard_title" href="{{ url_for('auth.admin_dashboard') }}">
+    <span class="material-icons-round">arrow_back</span>
+    <h1>back</h1>
+</a>
+<div class="admin_panel">
+
+    <div class="comment_post_title">
+        <a href="{{url_for('blog.view_post', user_subdomain=current_user.subdomain, post_id=post.id)}}" target="_blank">
+
+            <h3>{{post.title}}</h3>
+            <p> {{post.subtitle}} </p>
+        </a>
+        
+    </div>
+    
+    <div class="pre_posts">
+        <h1>Comments</h1>
+
+            
+            
+
+            {% if comments %}
+            {% for comment in comments %}
+            <div class="pre_tab">
+            <div class="post_comments_control">
+                <div class="comment-title">
+                    <h3>{{comment.name}}</h3>
+                    <p>{{comment.created_at.strftime('%H:%M · %D')}}</p>
+                    <h3><a href="{{url_for('auth.delete_comment', post_id=post.id, comment_id=comment.id)}}"><span class="material-icons-round">delete</span></a></h3>
+                </div>
+                 
+                <p>{{comment.body}}</p>
+            </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        
+
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

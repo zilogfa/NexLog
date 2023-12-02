@@ -17,6 +17,6 @@ class Post(db.Model):
     
     blog = relationship('Blog', back_populates='posts')
     subjects = db.relationship('Subject', secondary='post_subject_association', back_populates='posts')
-    comments = db.relationship('Comment', lazy=True)
+    comments = db.relationship('Comment', back_populates='post', cascade="all, delete-orphan")
 
     # subjects = db.relationship('Subject', backref='posts')

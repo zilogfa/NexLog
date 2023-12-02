@@ -1,13 +1,22 @@
-from flask import render_template, redirect, url_for, request, abort
+from flask import render_template, redirect, url_for, request, abort, g
 from flask import Blueprint
 from flask_login import login_required, current_user
+
+from flask_wtf.csrf import generate_csrf
 from app import db
 from app.models import Blog, Post, Subject, Comment
-from app.forms import CommentForm
+from app.forms.comment_forms import CommentForm
 from . import auth_routes
 
 
 blog_routes = Blueprint('blog', __name__, subdomain='<user_subdomain>')
+
+# -------- Globally to all render_templates ---------------------------------------
+@blog_routes.before_request
+def before_request():
+    """universally accessible without repeatedly passing them manually to every render_template call."""
+    g.csrf_token = generate_csrf()  # from flask import g
+#.....................................................................................
 
 
 def get_subjects_for_blog(blog_id):
@@ -53,6 +62,8 @@ def view_post(user_subdomain, post_id):
         db.session.commit()
         print(f'New comment added; Blod ID:{blog.id}; Post ID:{post.id}')
         return redirect(url_for('blog.view_post', post_id=post.id, user_subdomain=user_subdomain))
+    else:
+        print(form.errors)
     comments = Comment.query.filter_by(post_id=post_id, blog_id=blog.id).all()  
     subjects = get_subjects_for_blog(blog.id)
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()

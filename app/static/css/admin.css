@@ -348,10 +348,43 @@
 
 
 
+.comment_post_title a{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: var(--border-radius-1);
+    /* border: 1px solid var(--color-dark-variant); */
+    background-color: var(--color-background);
+}
+
+.comment_post_title a h3{
+    font-weight: bold;
+}
+
+.comment_post_title a:hover{
+    opacity: 0.7;
+}
 
 
+.post_comments_control{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0.5rem 0;
+}
 
+.post_comments_control h3{
+    font-weight: bold;
+}
 
+.post_comments_control .comment-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
 

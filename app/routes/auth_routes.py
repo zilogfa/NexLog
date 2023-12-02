@@ -299,6 +299,32 @@ def edit_post(post_id):
 
 
 
+# Comments View/Delete >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# -----------------------------------------------------------------
+
+
+@auth_routes.route('/post_comments/<int:post_id>')
+@login_required
+def post_comments(post_id):
+    post = Post.query.get_or_404(post_id)
+    comments = Comment.query.filter_by(post_id=post_id, blog_id=current_user.id).all()
+    return render_template('auth/post_comments.html', current_user=current_user, post=post, comments=comments)
+
+
+@auth_routes.route('/delete_comment/<int:post_id>/<int:comment_id>')
+@login_required
+def delete_comment(post_id, comment_id):
+    comment = Comment.query.filter_by(id=comment_id, post_id=post_id).first()
+
+    if comment is None:
+        flash('Comment not found.', 'danger')
+        return redirect(url_for('auth.admin_dashboard'))
+    db.session.delete(comment)
+    db.session.commit()
+
+    flash('Comment deleted successfully.', 'success')
+    return redirect(url_for('auth.post_comments', post_id=post_id))
+
 # SETTING Main Page >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------
 
