@@ -1,3 +1,15 @@
+# NEXLOG
+### Content management system
+### Your favorite place to blog and share ideas.
+
+- Free & Protected
+- Professional Text Editor
+- Easy Post Categorization
+- Connect with Audience
+- Insightful analyrics
+
+## Blue Print Structure:
+
 ```bash
 /NEXLOG
     /app
@@ -27,3 +39,7 @@
     run.py
     README.md
 ```
+
+## Developed By:
+Ali Jafarbeglou
+www.alijafarbeglou.com
