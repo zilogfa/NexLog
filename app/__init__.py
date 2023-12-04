@@ -31,7 +31,7 @@ from app.models import Blog, Post, Subject, Comment # Importing to avoid circula
 from app.routes import main_routes, auth_routes, blog_routes
 app.register_blueprint(main_routes)
 app.register_blueprint(auth_routes,url_prefix='/auth')
-app.register_blueprint(blog_routes,url_prefix='/blog')
+app.register_blueprint(blog_routes)
 
 
 
