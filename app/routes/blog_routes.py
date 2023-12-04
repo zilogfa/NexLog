@@ -30,6 +30,9 @@ def get_subjects_for_blog(blog_id):
 @blog_routes.route('/')
 def blog(user_subdomain):
     blog = Blog.query.filter_by(subdomain=user_subdomain).first()
+    if blog is None:
+        # Handle the error, maybe redirect to a different page or show an error message
+        return f'<h3>error: blog for subdomain: {user_subdomain}, not found</h3>'
     posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.created_at.desc()).all()
     subjects = Subject.query.filter_by(blog_id=blog.id).all()
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
