@@ -22,14 +22,6 @@ auth_routes = Blueprint('auth', __name__)
 
 
 
-def get_subjects_for_blog(blog_id):
-    subjects = Subject.query \
-        .join(Post.subjects) \
-        .filter(Post.blog_id == blog_id) \
-        .distinct().all()
-    return subjects
-
-
 # Save Pictures >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def save_post_picture(file):
     # Check if the file is a new file upload

@@ -19,14 +19,6 @@ def before_request():
 #.....................................................................................
 
 
-def get_subjects_for_blog(blog_id):
-    subjects = Subject.query \
-        .join(Post.subjects) \
-        .filter(Post.blog_id == blog_id) \
-        .distinct().all()
-    return subjects
-
-
 @blog_routes.route('/')
 def blog(user_subdomain):
     blog = Blog.query.filter_by(subdomain=user_subdomain).first()
