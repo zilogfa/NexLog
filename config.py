@@ -11,6 +11,6 @@ class Config:
     #     SERVER_NAME = 'nexlog.us'
     # else:
     #     SERVER_NAME = 'nexlog-c4d6a2de71db.herokuapp.com'
-    # SESSION_COOKIE_DOMAIN = '.nexlog.us'
-    # REMEMBER_COOKIE_DOMAIN = '.nexlog.us'
+    SESSION_COOKIE_DOMAIN = '.nexlog.us'
+    REMEMBER_COOKIE_DOMAIN = '.nexlog.us'
     
