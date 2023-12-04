@@ -145,6 +145,10 @@
     border-radius: var(--border-radius-1);
 }
 
+.home-subject {
+    background-color: var(--clr-black);
+}
+
 .aside-subject:hover {
     padding-left: 1rem;
     opacity: 0.6;
@@ -430,14 +434,14 @@
 
 
 
-.blog-footer{
+.blog-footer {
     width: 100vw;
     padding: 4rem 0;
     background-color: var(--clr-black);
     justify-content: center;
 }
 
-.blog-footer .footer-content{
+.blog-footer .footer-content {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
@@ -446,19 +450,19 @@
     color: var(--color-light);
 }
 
-.blog-footer .footer-content h3{
+.blog-footer .footer-content h3 {
     color: var(--color-background);
     opacity: 0.7;
     font-size: 1.1rem;
 }
 
-.blog-footer .footer-content a{
+.blog-footer .footer-content a {
     color: var(--color-background);
     opacity: 0.3;
     font-size: 1.4rem;
 }
 
-.blog-footer .footer-content a:hover{
+.blog-footer .footer-content a:hover {
     opacity: 0.2;
 }
 

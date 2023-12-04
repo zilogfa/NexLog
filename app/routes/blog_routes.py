@@ -31,7 +31,7 @@ def get_subjects_for_blog(blog_id):
 def blog(user_subdomain):
     blog = Blog.query.filter_by(subdomain=user_subdomain).first()
     posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.created_at.desc()).all()
-    subjects = get_subjects_for_blog(blog.id)
+    subjects = Subject.query.filter_by(blog_id=blog.id).all()
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
 
     blog.impressions += 1
@@ -65,7 +65,7 @@ def view_post(user_subdomain, post_id):
     else:
         print(form.errors)
     comments = Comment.query.filter_by(post_id=post_id, blog_id=blog.id).all()  
-    subjects = get_subjects_for_blog(blog.id)
+    subjects = Subject.query.filter_by(blog_id=blog.id).all()
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
     blog.impressions += 1
     post.views += 1
@@ -85,7 +85,7 @@ def posts_by_subject(user_subdomain, subject_id):
         abort(404, description="Subject not found")
 
     posts = Post.query.join(Post.subjects).filter(Subject.id == subject_id, Post.blog_id == blog.id).all()
-    all_subjects = get_subjects_for_blog(blog.id)
+    all_subjects = Subject.query.filter_by(blog_id=blog.id).all()
     top_posts = Post.query.filter_by(blog_id=blog.id).order_by(Post.views.desc()).limit(5).all()
     blog.impressions += 1
     db.session.commit()

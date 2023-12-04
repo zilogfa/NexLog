@@ -22,6 +22,14 @@ auth_routes = Blueprint('auth', __name__)
 
 
 
+def get_subjects_for_blog(blog_id):
+    subjects = Subject.query \
+        .join(Post.subjects) \
+        .filter(Post.blog_id == blog_id) \
+        .distinct().all()
+    return subjects
+
+
 # Save Pictures >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def save_post_picture(file):
     # Check if the file is a new file upload
@@ -80,7 +88,7 @@ def save_header_picture(file):
         destination = os.path.join(
             current_app.root_path, 'static/images/header_pictures', new_filename)
 
-        output_size = (2800, 2800) 
+        output_size = (3800, 3800) 
         image = Image.open(file)
         image.thumbnail(output_size)
         image.save(destination)
@@ -155,7 +163,7 @@ def logout():
 @auth_routes.route('/admin_dashboard')
 @login_required
 def admin_dashboard():
-    posts = Post.query.order_by(Post.created_at.desc()).all()
+    posts = Post.query.filter_by(blog_id=current_user.id).order_by(Post.created_at.desc()).all()
     # if current_user.subdomain != user_subdomain:
     #     return redirect(url_for('main.index'))
     return render_template('auth/admin_dashboard.html', current_user=current_user, posts=posts)
@@ -167,12 +175,13 @@ def admin_dashboard():
 @login_required
 def create_subject():
     form = SubjectForm()
-    subjects = Subject.query.all()
+    subjects = Subject.query.filter_by(blog_id=current_user.id).all()
     if form.validate_on_submit():
         print('form is valid')
         new_subject = Subject(
             name=form.name.data,
-            description=form.description.data
+            description=form.description.data,
+            blog_id = current_user.id
         )
         db.session.add(new_subject)
         db.session.commit()
@@ -222,10 +231,8 @@ def delete_subject(subject_id):
 @auth_routes.route('/create_post', methods=['GET', 'POST'])
 @login_required
 def create_post():
-    form = PostForm()
-    posts = Post.query.all()
-
     blog_id = current_user.id
+    form = PostForm(blog_id)
     if form.validate_on_submit():
         print('form is valid')
         new_post = Post(
@@ -242,7 +249,7 @@ def create_post():
         db.session.commit()
         print(f'New post added: {form.title.data}')
         return redirect(url_for('auth.admin_dashboard'))
-    return render_template('auth/create_post.html', current_user=current_user, form=form, posts=posts)
+    return render_template('auth/create_post.html', current_user=current_user, form=form)
 
 # DELETE_post >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # -----------------------------------------------------------------

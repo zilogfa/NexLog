@@ -7,6 +7,12 @@ from flask_ckeditor import CKEditorField
 from app.models import Subject
 
 class PostForm(FlaskForm):
+    def __init__(self, blog_id=None, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        if blog_id is not None:
+            self.subject.query = Subject.query.filter_by(blog_id=blog_id)
+        else:
+            self.subject.query = Subject.query
     title = StringField('Title', validators=[DataRequired()], render_kw={"placeholder": "Title"})
     subtitle = StringField('Subtitle', render_kw={"placeholder": "Subtitle"})
     post_pic = FileField('Post Picture', validators=[

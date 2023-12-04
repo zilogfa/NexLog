@@ -24,6 +24,7 @@ class Blog(db.Model, UserMixin):
     impressions = db.Column(db.Integer, default=0)
     is_block = db.Column(db.Boolean, default=False)
 
+    subjects = relationship('Subject', back_populates='blog')
     posts = relationship('Post', back_populates='blog')
     comments = db.relationship('Comment', back_populates='blog')
 

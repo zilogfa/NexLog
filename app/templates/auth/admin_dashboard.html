@@ -11,14 +11,14 @@
     <div class="admin_info">
         <div class="admin_header">
             {% if current_user.header_pic %}
-                <img src="{{url_for('static', filename='images/header_pictures/' + current_user.header_pic)}}">
+            <img src="{{url_for('static', filename='images/header_pictures/' + current_user.header_pic)}}">
             {% endif %}
             <div class="admin_title">
                 <h1>{{current_user.blog_title}}</h1>
                 <h3>{{current_user.blog_subtitle}}</h3>
             </div>
         </div>
-        
+
         <div class="admin_img">
             {% if current_user.profile_pic %}
             <img src="{{url_for('static', filename='images/profile_pictures/' + current_user.profile_pic)}}">
@@ -73,14 +73,16 @@
         {% for post in posts %}
         <div class="pre_tab">
             <div class="title">
-                <a href="{{url_for('blog.view_post', user_subdomain=current_user.subdomain, post_id=post.id)}}" target="_blank">
+                <a href="{{url_for('blog.view_post', user_subdomain=current_user.subdomain, post_id=post.id)}}"
+                    target="_blank">
                     <h3>{{post.title}}</h3>
                     <p>{{post.subtitle}}</p>
                 </a>
             </div>
             <hr class="line">
             <div class="btn_sec">
-                <h3><span class="material-icons-round">schedule</span>{{post.created_at.strftime('%H:%M · %B %d, %Y')}}</h3>
+                <h3><span class="material-icons-round">schedule</span>{{post.created_at.strftime('%H:%M · %B %d, %Y')}}
+                </h3>
                 <h3><span class="material-icons-round">visibility</span>{{post.views}}</h3>
 
                 <a href="{{ url_for('auth.post_comments', post_id=post.id) }}">

@@ -3,7 +3,7 @@
 
 <div class="blog-header">
     {% if blog.header_pic %}
-        <img src="{{url_for('static', filename='images/header_pictures/' + blog.header_pic)}}">
+    <img src="{{url_for('static', filename='images/header_pictures/' + blog.header_pic)}}">
     {% endif %}
     <div class="home-icon-header">
         <a class="flex-row-span" href="{{url_for('blog.blog', user_subdomain=subdomain)}}">
@@ -36,21 +36,21 @@
         <p>{{blog.blog_about}}</p>
 
         {% if blog.url %}
-            <a class="a-span a-btn bg-primary" href="{{blog.url}}" target="_blank">
-                <span class="material-icons-round">link</span>
-                <span class="font-size-05">{{blog.url}}</span>
-                
-            </a>
+        <a class="a-span a-btn bg-primary" href="{{blog.url}}" target="_blank">
+            <span class="material-icons-round">link</span>
+            <span class="font-size-05">{{blog.url}}</span>
+
+        </a>
         {% endif %}
 
 
-        
+
         <div class="flex-row-span margin-top-2rem">
             <span class="material-icons-round">subject</span>
             <h3>Subjects</h3>
         </div>
         <hr class="line-100">
-        <a class="aside-subject flex-row-span" href="{{url_for('blog.blog', user_subdomain=subdomain)}}">
+        <a class="aside-subject home-subject flex-row-span" href="{{url_for('blog.blog', user_subdomain=subdomain)}}">
             <span class="material-icons-round">home</span>
             Home Page
         </a>
@@ -71,8 +71,7 @@
         <hr class="line-100">
         {% if top_posts %}
         {% for post in top_posts %}
-        <a class="a-pop-post"
-            href="{{url_for('blog.view_post', user_subdomain=subdomain, post_id=post.id)}}">
+        <a class="a-pop-post" href="{{url_for('blog.view_post', user_subdomain=subdomain, post_id=post.id)}}">
             <div class="pop-post-img">
                 {% if post.post_pic %}
                 <img src="{{url_for('static', filename='images/post_pictures/' + post.post_pic )}}">
@@ -103,7 +102,7 @@
         <p> <a href="{{ url_for('main.main') }}" target="_blank">NEXLOG</a> </p>
         <p>Content management system</p>
         <p>©All rights reserved</p>
-        
+
     </div>
 </div>
 

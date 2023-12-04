@@ -5,7 +5,7 @@
     <h1>back</h1>
 </a>
 <div class="admin_panel">
-    <h1>Create Subject</h1>
+    <h1>Edit Profile</h1>
 
     <div class="edit_profile">
         <form method="POST">
@@ -14,17 +14,17 @@
                 <h3>Blog Title: *</h3>
                 {{ form.blog_title(class="form_string")}}
             </div>
-            
+
             <div>
                 <h3>Blog subtitle:</h3>
                 {{ form.blog_subtitle(class="form_string")}}
             </div>
-            
+
             <div>
                 <h3>About blog:</h3>
                 {{ form.blog_about(class="form_text")}}
             </div>
-            
+
             <hr class="hr-100">
 
             <div>
@@ -36,7 +36,7 @@
                 <h3>URL: <span class="xx-small-font">(Max 46 Char)</span> </h3>
                 {{ form.url(class="form_string")}}
             </div>
-            
+
             {{ form.submit(class="form_btn")}}
         </form>
     </div>
