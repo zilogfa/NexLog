@@ -6,6 +6,15 @@ NexBlog is your favorite place to blog and share comments. Every user gets a uni
 
 **Published Site:** [nexblog.us](https://nexblog.us)
 
+Table of Contents
+
+- [Features](#Features)
+- [Languages and Technologies](#Languages)
+- [Project Structure](#structure)
+- [Contact the Developer](#Contactr)
+
+
+
 Our pages are designed to be responsive and user-friendly on both mobile and desktop devices.
 
 ### Features
