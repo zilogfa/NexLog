@@ -17,7 +17,9 @@ Table of Contents
 
 Our pages are designed to be responsive and user-friendly on both mobile and desktop devices.
 
-### Features
+## Features
+
+### Home page
 
 - **Landing Page (`main.html`):** Introduction to NexBlog, with visibility to top posts and top blogs from all users.
 - **About (`about.html`):** Information about NexBlog.
@@ -38,7 +40,7 @@ Our pages are designed to be responsive and user-friendly on both mobile and des
 - **Show Post (`show_post.html`):** Where individual posts can be read, comments viewed, and new comments submitted.
 
 
-### Languages and Technologies
+## Languages and Technologies
 
 NexBlog is built using a variety of languages and technologies that ensure a secure, responsive, and user-friendly experience. Here's a breakdown of the core stack:
 
@@ -78,7 +80,7 @@ NexBlog is built using a variety of languages and technologies that ensure a sec
 These technologies together create a robust platform that balances functionality with developer ergonomics, ensuring that NexBlog is both powerful and maintainable.
 
 
-### Project Structure
+## Project Structure
 
 
 ```bash
@@ -124,7 +126,7 @@ NEXBLOG
 
 ```
 
-### Contact the Developer
+## Contact the Developer
 
 **Ali Jafarbeglou**
 
