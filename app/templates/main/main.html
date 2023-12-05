@@ -7,7 +7,7 @@
         <div class="main-top">
             <div class="login-div">
                 <a href="{{ url_for('main.about') }}"><span class="material-icons-round">contact_support</span>About
-                    NEXLOG</a>
+                    NEXBLOG</a>
             </div>
             <!-- <div class="logo-sec">
                 <h3>NEXLOG</h3>
@@ -80,7 +80,7 @@
                 <img src="{{url_for('static', filename='images/main/blank-profile-pic.png')}}">
                 {% endif %}
                 <a href="{{url_for('blog.blog', user_subdomain=blog.subdomain)}}" target="_blank">
-                    <p><span class="material-icons-round">link</span>{{ blog.subdomain }}.nexblogus</p>
+                    <p><span class="material-icons-round">link</span>{{ blog.subdomain }}.nexblog.us</p>
                     <h3>{{blog.blog_title}}</h3>
                     <h4>{{ blog.blog_subtitle }}</h4>
 
