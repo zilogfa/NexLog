@@ -28,9 +28,49 @@ Our pages are designed to be responsive and user-friendly on both mobile and des
 - **Blog Home (`blog.html`):** Where all published posts are visible, categorized by subjects, and favored by readers.
 - **Show Post (`show_post.html`):** Where individual posts can be read, comments viewed, and new comments submitted.
 
+
+### Languages and Technologies
+
+NexBlog is built using a variety of languages and technologies that ensure a secure, responsive, and user-friendly experience. Here's a breakdown of the core stack:
+
+- **Frontend:**
+  - **HTML5:** For structuring content and layout.
+  - **CSS3:** For styling and responsive design.
+  - **JavaScript:** For dynamic interactions and client-side scripting.
+
+- **Backend:**
+  - **Python:** The primary programming language used for server-side logic.
+  - **Flask:** A lightweight WSGI web application framework used to serve the backend.
+  - **Jinja2:** A template engine for Python, used in conjunction with Flask.
+
+- **Database:**
+  - **SQLite:** Used in the development environment for its simplicity and ease of use.
+  - **PostgreSQL:** Recommended for production in Heroku for a robust, scalable, and production-ready database solution.
+
+- **Editor and Tools:**
+  - **CKEditor:** A powerful WYSIWYG editor integrated for composing blog posts.
+  - **Pillow:** A Python Imaging Library that adds image processing capabilities to your Python interpreter.
+
+- **Deployment and Hosting:**
+  - **Heroku:** A cloud platform as a service (PaaS) used for deploying and running the application.
+  - **Cloudflare:** Provides DNS management, SSL protection, and optimization services.
+
+- **Version Control:**
+  - **Git:** For source code management.
+  - **GitHub:** A cloud-based hosting service that lets you manage Git repositories.
+
+- **Additional Libraries and Frameworks:**
+  - **WTForms:** For form handling and validation.
+  - **Flask-WTF:** Integrates Flask with WTForms.
+  - **Flask-Login:** For handling user authentication.
+  - **Flask-Migrate:** For handling SQLAlchemy database migrations.
+  - **Flask-CKEditor:** Flask extension for CKEditor.
+
+These technologies together create a robust platform that balances functionality with developer ergonomics, ensuring that NexBlog is both powerful and maintainable.
+
+
 ### Project Structure
 
-# Please note, for the following section, replace ... with actual paths and filenames
 
 ```bash
 NEXBLOG
@@ -68,6 +108,9 @@ NEXBLOG
 │       └── All HTML's templates
 ├── config.py
 ├── run.py
+├── .gitignore
+├── Procfile
+├── requirments.txt
 └── README.md
 
 ```
