@@ -16,7 +16,7 @@
             {% if post.subjects %}
             {% for subject in post.subjects %}
             <a class="post-subject"
-                href="{{url_for('blog.posts_by_subject', user_subdomain=current_user.subdomain, subject_id=subject.id)}}">#{{subject.name}}</a>
+                href="{{url_for('blog.posts_by_subject', user_subdomain=subdomain, subject_id=subject.id)}}">#{{subject.name}}</a>
             {% endfor %}
             {% endif %}
             <div>
